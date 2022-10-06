@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  {% load custom_tags %}
+
+  <!-- Mirrored from labartisan.net/demo/PoultryFarm/poultry-farm/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 12 May 2022 10:23:42 GMT -->
+  <head>
+    <title>Catering Pro</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- google fonts -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Sofia&effect=fire"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="{% static 'assets/images/x-icon/01.png' %}"
+    />
+
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/all.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/icofont.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/lightcase.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/swiper.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
+  
+  <style>
+    div.ex3 {
+      background-color: lightblue;
+      height: 400px;
+      overflow-y: auto;
+
+    }
+  </style>
+  <style>
+  
+    
+    .alert {
+      position: relative;
+    }
+    
+    .progress {
+      position: absolute;
+      width: 100%;
+      bottom: 0px;
+      left: 0px;
+    }
+    .progress-bar {
+      transition: none !important;
+    }
+    </style>
+  </head>
+
+  <body>
+    <!-- preloader start here -->
+    <div class="preloader">
+      <div class="preloader-inner">
+        <div class="preloader-icon">
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+    <!-- preloader ending here -->
+
+    <!--search area-->
+    <div class="search-input">
+      <div class="search-close">
+        <i class="icofont-close-circled"></i>
+      </div>
+      <form>
+        <input type="text" name="text" placeholder="Search Heare" />
+        <button class="search-btn" type="submit">
+          <i class="icofont-search-2"></i>
+        </button>
+      </form>
+    </div>
+    <!-- search area -->
+
+    <!-- Mobile Menu Start Here -->
+    <div class="mobile-menu transparent-header">
+      <nav class="mobile-header">
+        <div class="header-logo" style="height: 20px;">
+           
+          
+          <a href="index.html"
+            ><img
+              src="{% static 'assets/images/logo/catering.jpg' %}"
+              alt="logo"
+              style="height:20px;"
+          /></a>
+        </div>
+        <div class="header-bar">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+      <nav class="mobile-menu">
+        <div class="mobile-menu-area">
+          <div class="mobile-menu-area-inner">
+            <ul class="lab-ul">
+              <li class="active">
+                <a href="/">Home</a>
+                {% comment %} <ul class="lab-ul">
+                  <li><a href="index.html">Home Page One</a></li>
+                  <li><a href="index-2.html">Home Page Two</a></li>
+                </ul> {% endcomment %}
+              </li>
+              <li><a href="/about/">About</a></li>
+              {% comment %}
+              <li>
+                <a href="#0">Pages</a>
+                <ul class="lab-ul">
+                  <li><a href="team.html">Team Membar</a></li>
+                  <li><a href="faq-page.html">Faq Page</a></li>
+                  <li><a href="404.html">404 Page</a></li>
+                </ul>
+              </li>
+              {% endcomment %} {% comment %}
+              <li>
+                <a href="#0">Blog</a>
+                <ul class="lab-ul">
+                  <li><a href="blog.html">Blog</a></li>
+                  <li><a href="blog-single.html">Blog Details</a></li>
+                </ul>
+              </li>
+              {% endcomment %}
+              <li>
+                <a href="#0">Shop</a>
+                <ul class="lab-ul">
+                  <li><a href="/product/">Products Page</a></li>
+                  {% comment %} <li><a href="product-single.html">Products Details</a></li> {% endcomment %}
+                  <li><a href="/mycart/">Cart Page</a></li>
+                </ul>
+              </li>
+              <li><a href="/contact/">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <!-- Mobile Menu Ending Here -->
+
+    <!-- desktop menu start here -->
+    <header class="header-section">
+      <div class="header-top">
+        <div class="container">
+          <div class="row justify-content-center align-items-center">
+            <div class="col-12">
+              
+              {% for i in messages %}
+              <div class="alert alert-success" id="alert" role="alert" style="cursor:pointer;opacity:.85">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Success!</strong> {{i}}!
+                <div class="progress active" role="progressbar" style="height:5px">
+                  <div class="progress-bar bg-success" id="pb" style="width:100%;opacity:0.5"></div>
+                </div>
+              </div>
+              {% endfor %}
+
+              </div>
+            <div class="col-lg-5 col-12">
+
+              <div class="logo py-2">
+
+
+                <a href="index.html"
+                  ><img
+                    class="img-responsive"
+                    src="{% static 'assets/images/logo/catering.jpg' %} "
+                    alt="logo"
+                    style="height: 50px;"
+                /></a>
+              </div>
+            </div>
+            <div class="col-lg-7 col-12">
+              <div class="ht-left">
+                <ul class="lab-ul d-flex flex-wrap justify-content-end">
+                  <li class="d-flex flex-wrap align-items-center">
+                    <div class="ht-add-thumb mr-2">
+                      <img
+                        src="{% static 'assets/images/header/01.png' %}"
+                        alt="address"
+                        style="height: 20px;"
+                      />
+                    </div>
+                    <div class="ht-add-content">
+                      <span style="font-size:12px">F-9/94, AWHO Flats,</span>
+                      <span class="d-block " style="font-size:12px"
+                        >Jaipur, Rajasthan,INDIA</span
+                      >
+                    </div>
+                  </li>
+                  <li class="d-flex flex-wrap align-items-center">
+                    <div class="ht-add-thumb mr-2">
+                      <img
+                        src="{% static 'assets/images/header/02.png' %}"
+                        alt="email"
+                        style="height: 20px;"
+                      />
+                    </div>
+                    <div class="ht-add-content" >
+                      <span style="font-size:12px">Send Mail </span>
+                      <span class="d-block" style="font-size:12px">pcb.aar@gmail.com</span>
+                    </div>
+                  </li>
+                  <li class="d-flex flex-wrap align-items-center">
+                    <div class="ht-add-thumb mr-2">
+                      <img
+                        src="{% static 'assets/images/header/03.png' %}"
+                        alt="call"
+                        style="height: 20px;"
+                      />
+                    </div>
+                    <div class="ht-add-content">
+                      <span style="font-size:12px">Make Call </span>
+                      <span class="d-block" style="font-size:12px">+88-6487-5962-563</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="header-bottom bg-theme">
+        <div class="header-area">
+          <div class="container">
+            <div class="primary-menu">
+              <div class="main-area w-100">
+                <div
+                  class="main-menu d-flex flex-wrap align-items-center justify-content-between w-100"
+                >
+                  <div class="logo">
+                    <a href="/"
+                      ><img
+                        src="{% static 'assets/images/logo/catering.jpg' %}"
+                        alt="logo"
+                        style="height: 50px;"
+                    /></a>
+                  </div>
+                  <ul class="lab-ul">
+                    <li class="active">
+                      <a href="/">Home</a>
+                      {% comment %} <ul class="lab-ul">
+                        <li>
+                          <a href="index.html" class="active">Home Page One</a>
+                        </li>
+                        <li><a href="index-2.html">Home Page Two</a></li>
+                      </ul> {% endcomment %}
+                    </li>
+                    <li><a href="/about/">About</a></li>
+
+                    {% comment %}
+                    <li>
+                      <a href="#0">Blog</a>
+                      <ul class="lab-ul">
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="blog-single.html">Blog Details</a></li>
+                      </ul>
+                    </li>
+                    {% endcomment %}
+                    <li>
+                      <a href="#0">Shop</a>
+                      <ul class="lab-ul">
+                        <li><a href="/product/">Products Page</a></li>
+                        {% comment %} <li>
+                          <a href="product-single.html">Products Details</a>
+                        </li> {% endcomment %}
+                        <li><a href="{% url 'myorder' %}">My Order</a></li>
+                        <li><a href="/mycart/">Cart Page</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="/gallery/">Gallery</a>
+                      {% comment %} <ul class="lab-ul">
+                        <li><a href="gallery-1.html">Gallery 1</a></li>
+                        <li><a href="gallery-2.html">Gallery 2</a></li>
+                      </ul> {% endcomment %}
+                    </li>
+                    <li><a href="/contact/">Contact</a></li>
+                    {% if request.user.is_authenticated %}
+                   
+                    <li>
+                      <a href="#0">Settings</a>
+                      <ul class="lab-ul">
+                        <li><a href="/profile/">Profile</a></li>
+                        <li><a href="/change-password/">Change Password</a></li>
+                        <li><a href="/signout/">SignOut</a></li>
+                      </ul>
+                    </li>
+                    
+                    {% else %}
+                    <li><a href="{% url 'signup' %}">SignUp</a></li>
+                    <li><a href="{% url 'login' %}">SignIn</a></li>
+                    {% endif %}
+                  </ul>
+                  <ul class="lab-ul search-cart">
+                    {% if request.user.is_authenticated %}
+                       <b class="mr-4 mt-2" style="color:white">Welcome, {{ request.user.username}}</b>
+                    {% endif %}   
+                    <li>
+                      <div class="cart-option">
+                        {% comment %} <i class="">Welcome, {{ request.user.username}}</i> {% endcomment %}
+                        <i class="icofont-cart-alt"></i>
+                        <div class="cart-content table-responsive ex3">
+                           
+                          {% for i in request|callproduct %}
+                          <div class="cart-item">
+                            <div class="cart-img">
+                              <input type="hidden" class="cart-plus-minus-box" type="text" id="shop_qty-{{forloop.counter}}" name="qtybutton" value="{% productqty i request.user %}" readonly />
+                              <b id="totalprice-{{forloop.counter}}" hidden>{% producttotalprice i request.user %}</b>
+                              <a href="/mycart/"
+                                ><img
+                                  src="{{i|productimage}}"
+                                  alt="cart"
+                                  style="width: 100px;height: 100px"
+                              /></a>
+                            </div>
+                            <div class="cart-des">
+                              <a href="#">{{i|productname}}</a>
+                              <p>{{i|productprice}}</p>
+                            </div>
+                            <div class="cart-btn">
+                              <a href="#"
+                                ><i class="icofont-close-circled"></i
+                              ></a>
+                            </div>
+                          </div>
+                          {% endfor %}
+
+                          <div class="cart-bottom">
+                            <div class="cart-subtotal">
+                              <p>Total: <b class="float-right" id="order-total-2"></b></p>
+                            </div>
+                            <div class="cart-action">
+                              <a href="/mycart/" class="lab-btn"
+                                ><span>View Cart</span></a
+                              >
+                              <a href="#" class="lab-btn"
+                                ><span>Close</span></a
+                              >
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      
+                        <div onclick="changelink({% if request.user.is_authenticated %}'{% url 'profile' %}'{% else %} {% url 'login' %} {% endif %})" style="cursor: pointer">
+                          <i class="icofont-user"></i>
+                        </div>
+                      
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- desktop menu ending here -->
+
+    {% block body %} {% endblock %}
+
+    <!-- footer section start here -->
+    <script src="{% static 'assets/js/jquery.js' %}"></script>
+    <script src="{% static 'assets/js/fontawesome.min.js' %}"></script>
+    <script src="{% static 'assets/js/waypoints.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/swiper.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.countdown.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'assets/js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'assets/js/lightcase.js' %}"></script>
+    <script src="{% static 'assets/js/functions.js' %}"></script>
+  
+    
+  
+    <script>
+      var prolenth = '{{request|lengthfind}}';
+      
+      var mytotal = 0;
+      for(var i=1;i<=prolenth*1;i++){
+          shop_qty = document.getElementById('shop_qty-'+i).value;
+          
+          totalprice = parseFloat(document.getElementById('totalprice-'+i).innerHTML);
+          
+          var mytotal = parseFloat(mytotal) + (totalprice);
+      }
+      var mytotal=(mytotal).toLocaleString(
+          undefined, {
+              minimumFractionDigits:2
+          }
+      );
+      //document.getElementById('order-subtotal').innerHTML  = mytotal;
+      document.getElementById('order-total-2').innerHTML  = mytotal; 
+  
+      function changelink(url){
+        window.location = url;
+      }
+  
+      var currentChunk = 0;
+      var chunks = 5;
+  
+      $('.alert').click(function() {
+        $(".alert").alert('close');
+      });
+  
+      $('.alert').hover(function() {
+        window.clearInterval(timer);
+        window.clearTimeout(time);
+        $(".alert").css('opacity', 1);
+      }, function() {
+        $(".alert").css('opacity', .9);
+        timer = setInterval(function() {
+          update();
+        }, 10);
+      });
+  
+      var timer = setInterval(function() {
+        update();
+      }, 10);
+  
+      var time = window.setTimeout(function() {
+        $(".alert").fadeTo(1000, 0).slideUp(1000, function() {
+          $(this).remove();
+        });
+      }, ((chunks - currentChunk) * 1000));
+  
+      function update() {
+        currentChunk += 0.01;
+        var progPercent = 100 - (currentChunk * (100 / chunks));
+        $(".progress-bar").css('width', progPercent + '%').attr('aria-valuenow', progPercent);
+  
+        if (progPercent <= 0) {
+          $(".alert").remove();
+        }
+  
+        if (currentChunk >= 5) {
+          window.clearInterval(timer);
+        }
+      }
+  </script>
+  </body>
+  
+  <!-- Mirrored from labartisan.net/demo/PoultryFarm/poultry-farm/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 12 May 2022 10:27:06 GMT -->
+</html>    

@@ -1,0 +1,136 @@
+{% extends 'adminindex.html' %} 
+{% load static %} 
+{% block body %}
+
+<style>
+.custom-file-input{
+    height:40px;
+    padding:20px;
+}
+</style>
+
+
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">
+              Add Product
+              <a
+                href="/vwproduct/?action=inactive"
+                class="btn btn-danger"
+                style="float: right"
+                >Inactive</a
+              >
+              <a
+                href="/vwproduct/?action=active"
+                class="btn btn-success mx-2"
+                style="float: right"
+                >Active</a
+              >
+
+              <a href="/vwproduct/" class="btn btn-info" style="float: right"
+                >List</a
+              >
+            </h4>
+            <p class="card-description">Add Main Product </p>
+            <form
+              class="forms-sample"
+              method="post"
+              action=""
+              enctype="multipart/form-data"
+            >
+              {% csrf_token %}
+              <div class="row">
+              <div class="form-group col-6">
+                <label for="exampleInputName1">Product Category</label>
+                <select
+                  class="form-control"
+                  id="exampleInputName1"
+                  name="category"
+                 
+                >
+                    <option>Selecte Category</option>
+                    {% for i in category %}
+                        <option value="{{i.id}}" {% if data.category.id == i.id %}selected{% endif %}>{{i.name}}</option>
+                    {% endfor %} 
+                </select>
+              </div>
+
+
+              <div class="form-group col-6">
+                <label for="exampleInputName1">Product Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleInputName1"
+                  placeholder="Name"
+                  name="products"
+                  value="{{data.name}}"
+                />
+              </div>
+              <div class="form-group col-6">
+                <label for="exampleInputName1">Product Price</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="exampleInputName1"
+                  placeholder="Price"
+                  name="price"
+                  step=0.01
+                  value="{{data.price}}"
+                />
+              </div>
+              
+
+              <div class="form-group  col-4">
+                <label for="exampleInputName1">Product Image</label>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" name="image" style="height:80px;padding:20px;">
+                    <label class="custom-file-label">Choose file...</label>
+                  </div>
+              </div>
+
+              <div class="form-groupp col-2">
+                <img src="{{data.image.url}}" style="width:100%"/>
+              </div>
+              
+              <div class="form-group col-12">
+                <label for="exampleInputName1">Product Description</label>
+                <textarea
+                  class="form-control"
+                  id="exampleInputName1"
+                  placeholder="Write your description"
+                  name="desc"
+                  style="height: 150px;"
+                >{{data.desc}}
+                </textarea>
+              </div>
+
+              <div class="form-group col-12">
+                <label for="exampleInputName1">Detail Description</label>
+                <textarea
+                  class="form-control"
+                  id="exampleInputName1"
+                  placeholder="Write your description"
+                  name="editor1"
+                  style="height: 150px;"
+                >{{data.detaildesc|safe}}
+                </textarea>
+              </div>
+            </div>
+              <button type="submit" class="btn btn-primary mr-2">Submit</button>
+              <button type="reset" class="btn btn-light">Cancel</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>
+  <script>
+    CKEDITOR.replace( 'editor1' );
+  </script>
+
+  {% endblock %}

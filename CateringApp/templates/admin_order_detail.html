@@ -1,0 +1,198 @@
+{% include 'adminindex.html' %} {% load static %} {% load custom_tags %}
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+  integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+
+<style>
+  #active {
+    border-radius: 50%;
+  }
+
+  #inactive {
+    border-radius: 50%;
+  }
+  #active:hover {
+    cursor: default !important;
+  }
+  #inactive:hover {
+    cursor: default !important;
+  }
+  img {
+    width: 60px;
+    height: 60px;
+  }
+  .table-responsive {
+    font-size: 11px;
+  }
+  .material-symbols-outlined {
+    font-size: 14px;
+  }
+  td {
+    padding: 0px;
+  }
+</style>
+
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            {% for i in messages %}
+            <div
+              class="alert alert-success"
+              id="alert"
+              role="alert"
+              style="cursor: pointer; opacity: 0.85"
+            >
+              <button
+                type="button"
+                class="close"
+                data-dismiss="alert"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <strong>Success!</strong> {{i}}!
+              <div
+                class="progress active"
+                role="progressbar"
+                style="height: 5px"
+              >
+                <div
+                  class="progress-bar bg-success"
+                  id="pb"
+                  style="width: 100%; opacity: 0.5"
+                ></div>
+              </div>
+            </div>
+            {% endfor %}
+            <h4 class="card-title">Order Detail</h4>
+            <p class="card-description">Dashboard <code>order-detail</code></p>
+            <hr />
+            <div class="table-responsive">
+              <table id="example" class="display nowrap" style="width: 100%">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    {% comment %}
+                    <th>Delete</th>
+                    {% endcomment %}
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for i in productid %}
+                  <tr>
+                    <td class="product-item">
+                      <div class="p-thumb">
+                        <a href="#"
+                          ><img
+                            src="{{i|productimage}}"
+                            alt="product"
+                            style="width: 100px; height: 100px"
+                        /></a>
+                      </div>
+                      <div class="p-content">
+                        <a href="#">{{i|productname}}</a>
+                      </div>
+                    </td>
+                    <td>{{i|productprice}}</td>
+                    <td>{% orderqty i pid %}</td>
+                    <td id="totalprice-{{forloop.counter}}">
+                      {% ordertotalprice i pid %}
+                    </td>
+                    {% comment %}
+                    <td>
+                      <a href="/deletecart/{{i}}/" class="btn btn-warning"
+                        ><img
+                          src="{% static 'assets/images/del.png' %}"
+                          alt="product"
+                      /></a>
+                    </td>
+                    {% endcomment %}
+                  </tr>
+                  {% endfor %}
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th></th>
+                    <th></th>
+                    <th style="text-align: right">Order Total</th>
+
+                    <th id="order-total" style="text-align: right"></th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div>
+
+      </div>
+      
+    </div>
+  </div>
+  
+  <div class="content-wrapper">
+    
+    <div class="row">
+        <div class="col-lg-12"
+        <center><h2 style="margin-left:2%">User Profile</h2></center>
+        </div>
+      <div class="col-lg-12 grid-margin stretch-card">
+        
+        <div class="card">
+          <div class="card-body">
+            
+              <table id="example2" class="display nowrap" style="width: 100%">
+                <tr style="border-bottom: 1px solid lightgrey">
+                  <th style="float: left;">Name</th>
+                  <td>
+                    {{order.user.user.first_name}}
+                    {{order.user.user.last_name}}
+                  </td>
+                </tr>
+
+                <tr style="border-bottom: 1px solid lightgrey">
+                  <th>Email</th>
+                  <td>{{order.user.user.email}}</td>
+                </tr>
+                <tr style="border-bottom: 1px solid lightgrey">
+                  <th>Username</th>
+                  <td>{{order.user.user.username}}</td>
+                </tr>
+                <tr style="border-bottom: 1px solid lightgrey">
+                  <th>Mobile</th>
+                  <td>{{order.user.mobile}}</td>
+                </tr>
+                <tr style="border-bottom: 1px solid lightgrey">
+                  <th>Address</th>
+                  <td>{{order.user.address}}</td>
+                </tr>
+                <tr style="border-bottom: 1px solid lightgrey">
+                  <th>Image</th>
+                  <td>
+                    <img
+                      src="{% if order.user.image %}{{order.user.image.url}}{% endif %}"
+                    />
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+{% include 'tablecdn.html' %} {% include 'footeradmin.html' %}

@@ -1,0 +1,49 @@
+{% extends 'index.html' %} {% load static %} {% block body %}
+<div
+  class="container my-3"
+  align="center"
+  style="border: 3px solid brown; padding: 10px; width: 50%"
+>
+  <h4>My Profile</h4>
+  <hr />
+  <div class="contac-bottom">
+    <table>
+      <tr style="border-bottom: 1px solid lightgrey">
+        <th style="float: left; width: 120px">Name</th>
+        <td>{{data.user.first_name}} {{data.user.last_name}}</td>
+      </tr>
+
+      <tr style="border-bottom: 1px solid lightgrey">
+        <th>Email</th>
+        <td>{{data.user.email}}</td>
+      </tr>
+      <tr style="border-bottom: 1px solid lightgrey">
+        <th>Username</th>
+        <td>{{data.user.username}}</td>
+      </tr>
+      <tr style="border-bottom: 1px solid lightgrey">
+        <th>Mobile</th>
+        <td>{{data.mobile}}</td>
+      </tr>
+      <tr style="border-bottom: 1px solid lightgrey">
+        <th>Address</th>
+        <td>{{data.address}}</td>
+      </tr>
+      <tr style="border-bottom: 1px solid lightgrey">
+        <th>Image</th>
+        <td>
+          <img src="{% if data.image %}{{data.image.url}}{% endif %}" />
+        </td>
+      </tr>
+      <tr>
+        <th colspan="2" style="float: center; text-align: center">
+          <a href="/edtprofile/" class="btn btn-warning pull-center mt-3"
+            >Edit profile</a
+          >
+        </th>
+      </tr>
+    </table>
+  </div>
+</div>
+{% include 'footer.html' %}
+{% endblock %}

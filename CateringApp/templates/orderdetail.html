@@ -1,0 +1,96 @@
+{% include 'index.html' %} {% load static %} 
+{% load custom_tags %} 
+{% block body %}
+
+<div class="shop-cart mt-5">
+    <div class="container">
+        <div class="section-wrapper">
+            <h2 class="mb-2" align="center"> <u>Order Detail</u>
+            </h2>
+            <div class="cart-top">
+                 <table id="example" class="display nowrap" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            {% comment %} <th>Delete</th> {% endcomment %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                       
+                        {% for i in productid %}
+                        <tr>
+                            <td class="product-item">
+                                <div class="p-thumb">
+                                    <a href="#"><img src="{{i|productimage}}" alt="product" style="width:100px;height:100px"></a>
+                                </div>
+                                <div class="p-content">
+                                    <a href="#">{{i|productname}}</a>
+                                </div>
+                            </td>
+                            <td>{{i|productprice}}</td>
+                            <td>
+                                    <input type="text" class="cart-plus-minus-box" type="text" id="shop_qty-{{forloop.counter}}" name="qtybutton" value="{% orderqty i pid %}" readonly />
+
+                                   </td>
+                            <td id="totalprice-{{forloop.counter}}">{% ordertotalprice i pid %}</td>
+                            {% comment %} <td>
+                                <a href="/deletecart/{{i}}/" class="btn btn-warning"><img src="{% static 'assets/images/del.png' %}" alt="product"></a>
+                            </td> {% endcomment %}
+                        </tr>
+                        {% endfor %}
+                        
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th style="text-align:right">
+                                    Order Total
+                            </th>
+                            
+                            <th  id="order-total" style="text-align:right">
+                            </th>
+                        </tr>
+                    </tfoot>
+                    
+                </table>
+                
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<script>
+    var prolenth = '{{lengthpro}}';
+    
+    var mytotal = 0;
+    for(var i=1;i<=prolenth*1;i++){
+        shop_qty = document.getElementById('shop_qty-'+i).value;
+        
+        totalprice = parseFloat(document.getElementById('totalprice-'+i).innerHTML);
+        var mytotal = parseFloat(mytotal) + (totalprice);
+    }
+
+    var mytotal=(mytotal).toLocaleString(
+        undefined, {
+            minimumFractionDigits:2
+        }
+    );
+    
+    document.getElementById('order-total').innerHTML  = mytotal; 
+     
+    {% comment %} parseFloat(mytotal); {% endcomment %}
+
+    
+
+    
+</script>
+{% include 'tablecdn.html' %}
+{% include 'footer.html' %}
+{% endblock %}
+
+

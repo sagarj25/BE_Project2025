@@ -1,0 +1,140 @@
+<html>
+  {% load static %}
+  {% load custom_tags %}
+  <head>
+    <meta charset="utf-8" />
+    <title>Invoice</title>
+    <link
+      rel="license"
+      href="https://www.opensource.org/licenses/mit-license/"
+    />
+    <link rel="stylesheet" href="{% static 'assets/css/invoice.css' %}" />
+    <style>
+        .text-center{
+            float:center;
+            text-align:center;
+        }
+    </style>
+  </head>
+  <body>
+    
+    <header>
+      <h1>Catering Invoice</h1>
+      <address contenteditable>
+        <p>{{order.user.user.first_name}} {{order.user.user.last_name}}</p>
+        <p>{{order.state}}<br />{{order.country}}, {{order.zipcode}}</p>
+        <p>{{order.user.mobile}}</p>
+      </address>
+      <span
+        ><img
+          alt=""
+          src="{% static 'assets/images/logo/catering.jpg' %}" /><input
+          type="file"
+          accept="image/*"
+      /></span>
+    </header>
+    <article>
+      <h1>Recipient</h1>
+      <address contenteditable>
+        <p>Catering Project<br /></p>
+      </address>
+      <table class="meta">
+        <tr>
+          <th><span contenteditable>Invoice #</span></th>
+          <td><span contenteditable>{{order.id}}</span></td>
+        </tr>
+        <tr>
+          <th><span contenteditable>Date</span></th>
+          <td><span contenteditable>{{order.created}}</span></td>
+        </tr>
+        <tr>
+          <th><span contenteditable>Amount Due</span></th>
+          <td><span id="prefix" contenteditable></span><span>{{order.price}}</span></td>
+        </tr>
+      </table>
+      <table class="inventory text-center">
+        <thead>
+          <tr>
+            <th><span contenteditable>Item</span></th>
+            <th><span contenteditable>Rate</span></th>
+            <th><span contenteditable>Quantity</span></th>
+            <th><span contenteditable>Price</span></th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for i in productid %}
+          <tr>
+            <td>
+              <span contenteditable>{{i|productname}}</span>
+            </td>
+            
+            <td style="text-align:center">
+              <span data-prefix>$</span><span contenteditable>{{i|productprice|floatformat:2}}</span>
+            </td>
+            <td style="text-align:center"><span id="shop_qty-{{forloop.counter}}">{% orderqty i pid %}</span></td>
+            <td><span data-prefix>$</span><span id="totalprice-{{forloop.counter}}">{% ordertotalprice i pid %}</span></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <table class="balance">
+        <tr>
+          <th><span contenteditable>Total</span></th>
+          <td><span data-prefix>$</span><span id="order-total"></span></td>
+        </tr>
+        <tr>
+          <th><span contenteditable>Amount Paid</span></th>
+          <td><span data-prefix>$</span><span contenteditable>0.00</span></td>
+        </tr>
+        <tr>
+          <th><span contenteditable>Balance Due</span></th>
+          <td><span data-prefix>$</span><span id="order-total-2"></span></td>
+        </tr>
+      </table>
+    </article>
+    <aside>
+      <h1><span contenteditable>Additional Notes</span></h1>
+      <div contenteditable>
+        <p>
+          
+        </p>
+      </div>
+    </aside>
+
+    <div id="print-id">
+        <a href="{% if request.user.is_staff %}/orderlist/?order=All{% else %}/myorder/{% endif %}" class="btn btn-success">Back</a> 
+        <a onclick="printpdf()" class="btn1 btn-success">Print</a> 
+    </div>
+    <script src="{% static 'assets/js/invoice.js' %}"></script>
+    <script>
+        var prolenth = '{{lengthpro}}';
+        
+        var mytotal = 0;
+        for(var i=1;i<=prolenth*1;i++){
+            shop_qty = document.getElementById('shop_qty-'+i).value;
+            
+            totalprice = parseFloat(document.getElementById('totalprice-'+i).innerHTML);
+            var mytotal = parseFloat(mytotal) + (totalprice);
+        }
+    
+        var mytotal=(mytotal).toLocaleString(
+            undefined, {
+                minimumFractionDigits:2
+            }
+        );
+        
+        document.getElementById('order-total').innerHTML  = mytotal; 
+        document.getElementById('order-total-2').innerHTML  = mytotal; 
+         
+        {% comment %} parseFloat(mytotal); {% endcomment %}
+    
+        
+    function printpdf(){
+        document.getElementById('print-id').style.display = 'none';
+        window.print();
+        document.getElementById('print-id').style.display = 'block';
+    }
+        
+    </script>
+  </body>
+</html>
