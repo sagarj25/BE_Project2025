@@ -1,0 +1,267 @@
+{% extends 'index.html' %} {% load static %} 
+{% load custom_tags %} 
+{% block body %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+    .checked {
+      color: green;
+    }
+
+    .facheck:hover {
+        cursor: pointer;
+    }
+    
+</style>
+
+<section class="page-header bg_img padding-tb">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="page-header-content-area">
+            <h4 class="ph-title">Catering Products Details</h4>
+            <ul class="lab-ul">
+                <li><a href="index.html">Home</a></li>
+                <li><a class="active">Product Details</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!-- Page Header Section Ending Here -->
+
+<!-- Shop Page Section start here -->
+<section class="shop-single padding-tb">
+    <div class="container">
+        <div class="row justify-content-center mb-15">
+            <div class="col-lg-10 col-12 sticky-widget">
+                <div class="product-details">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 col-12">
+                            <div class="product-thumb">
+                                <div class="swiper-container gallery-top">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="shop-item">
+                                                <div class="shop-thumb">
+                                                    <img src="{{data.image.url}}"
+                                                        alt="shop-single" style="width:100%;height:300px">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% for i in data.productimage_set.all %}
+                                        <div class="swiper-slide">
+                                            <div class="shop-item">
+                                                <div class="shop-thumb">
+                                                        <img src="{{i.image.url}}"
+                                                        alt="shop-single" style="width:100%;height:300px">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+
+                                        
+                                        {% comment %} 
+                                        <div class="swiper-slide">
+                                            <div class="shop-item">
+                                                <div class="shop-thumb">
+                                                    <img src="{% static 'assets/images/product/single/top/01.png' %}"
+                                                        alt="shop-single" style="width:100%;height:300px">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="shop-item">
+                                                <div class="shop-thumb">
+                                                    <img src="{% static 'assets/images/product/single/top/01.png' %}"
+                                                        alt="shop-single" style="width:100%;height:300px">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="shop-item">
+                                                <div class="shop-thumb">
+                                                    <img src="{% static 'assets/images/product/single/top/01.png' %}"
+                                                        alt="shop-single" style="width:100%;height:300px">
+                                                </div>
+                                            </div>
+                                        </div> {% endcomment %}
+                                    </div>
+
+                                    <div class="shop-navigation d-flex flex-wrap">
+                                        <div class="shop-nav shop-slider-prev"><i class="icofont-simple-left"></i>
+                                        </div>
+                                        <div class="shop-nav shop-slider-next"><i class="icofont-simple-right"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-container gallery-thumbs">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="shop-item">
+                                                <div class="shop-thumb">
+                                                    <img src="{{data.image.url}}" alt="shop-single">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% for i in data.productimage_set.all %}
+
+                                        <div class="swiper-slide">
+                                            <div class="shop-item">
+                                                <div class="shop-thumb">
+                                                    <img src="{{i.image.url}}" alt="shop-single" style="width:100%;height:80px">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-12">
+                            <div class="post-content">
+                                <h4>{{data.name}}</h4>
+                                <p class="rating">
+                                    {% for j in '5'|iterator  %}
+                                        {% if   j <= data|collectreview %}
+                                        <span class="fa fa-star checked"></span>
+                                        {% else %}
+                                        <span class="far fa-star"></span>
+                                        {% endif %}
+                                    {% endfor %}
+                                    ({{data.review_set.all.count}})
+                                </p>
+                                <h4>
+                                    {{data.price}}
+                                </h4>
+                                <h5>
+                                    {{data.name}} Description
+                                </h5>
+                                <p>
+                                    {{data.desc}}
+                                </p>
+                                <form action="/add_cart/{{data.id}}/">
+                                    
+                                    {% comment %} <div class="cart-plus-minus">
+                                        <div class="dec qtybutton">-</div>
+
+                                        <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1">
+                                        <div class="inc qtybutton">+</div>
+                                    </div> {% endcomment %}
+                                    
+                                    <button type="submit">Add To Cart</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="review">
+                    <ul class="agri-ul review-nav">
+                        <li class="desc" data-target="description-show">Description</li>
+                        <li class="rev active" data-target="review-content-show">Reviews {{data.review_set.all.count}}</li>
+                    </ul>
+                    <div class="review-content review-content-show">
+                        <div class="review-showing">
+                            <ul class="agri-ul content">
+                                
+                                {% for i in data.review_set.all %}
+                                
+                                
+                                <li>
+                                    <div class="post-thumb">
+                                        <img src="{{i.user.image.url}}" alt="shop">
+                                    </div>
+                                    <div class="post-content">
+                                        <div class="entry-meta">
+                                            <div class="posted-on">
+                                                <a href="#">{{i.user.user.first_name}} {{i.user.user.last_name}}</a>
+                                                <p>Posted on {{i.created}}</p>
+                                            </div>
+                                            <div class="rating">
+                                                {% for j in '5'|iterator  %}
+                                                    {% if   j <= i.ranking|changeint %}
+                                                    <span class="fa fa-star checked"></span>
+                                                    {% else %}
+                                                    <span class="far fa-star"></span>
+                                                    {% endif %}
+                                                {% endfor %}
+
+                                            </div>
+                                        </div>
+                                        <div class="entry-content">
+                                            <p>{{i.comment}}</p>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                {% endfor %}
+                                
+                                
+                                
+                            </ul>
+                            {% if not request.user.userprofile_set.all.0.review_set.all.0 %}
+                            <div class="client-review">
+                                <div class="review-form">
+                                    <div class="review-title">
+                                        <h5>Add a Review</h5>
+                                    </div>
+                                    <form action="" method="post" class="row">
+                                        {% csrf_token %}
+                                        <div class="col-md-4 col-12">
+                                            <div class="rating">
+                                                <span class="rating-title">Your Rating : </span>
+                                                <div class="rating">
+                                                    <span class="facheck fa fa-star fa-2x checked" onclick="fachecked(1)"></span>
+                                                    <span class="facheck fa fa-star fa-2x" onclick="fachecked(2)"></span>
+                                                    <span class="facheck fa fa-star fa-2x" onclick="fachecked(3)"></span>
+                                                    <span class="facheck fa fa-star fa-2x" onclick="fachecked(4)"></span>
+                                                    <span class="facheck fa fa-star fa-2x" onclick="fachecked(5)"></span>
+                                                </div>
+                                                <input type="hidden" value="" id="starval" name="starval">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-12">
+                                            <textarea rows="8" placeholder="Type Here Message" name="comment"></textarea>
+                                        </div>
+                                        <div class="col-12">
+                                            <button class="defult-btn" type="submit">Submit Review</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="description">
+                            <p>{{data.desc}}</p>
+                            <div class="post-item">
+                                <div class="post-thumb">
+                                    <img src="{{data.image.url}}" alt="shop" style="width:20%;height:200px">
+                                </div>
+                                <div class="post-content">
+                                    
+                                        {{data.detaildesc|safe}}
+                                    
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function fachecked(pid){
+        for(var i = 0; i < pid*1; i++){
+            document.getElementsByClassName('facheck')[i].classList.add('checked');
+        }
+        for(var i=pid*1; i<5; i++){
+            document.getElementsByClassName('facheck')[i].classList.remove('checked');
+        }
+        document.getElementById('starval').value = pid;
+    }
+</script>
+{% include 'footer.html' %}
+{% endblock %}

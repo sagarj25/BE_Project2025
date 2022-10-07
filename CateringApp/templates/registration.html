@@ -1,0 +1,104 @@
+{% extends 'index.html' %} {% load static %} {% block body %}
+<div class="container my-3">
+  <h4>Registration Page</h4>
+  <div class="contac-bottom">
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <div class="">
+          <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row form-group">
+              <div class="col-md-6">
+                <label for="">First Name</label>
+                <input
+                  type="text"
+                  name="fname"
+                  class="form-control"
+                  placeholder="First Name*"
+                  autofocus="true"
+                />
+              </div>
+              <br />
+              <div class="col-md-6">
+                <label for="">Last Name</label>
+                <input
+                  type="text"
+                  name="lname"
+                  class="form-control"
+                  placeholder="Last Name*"
+                />
+              </div>
+              <br />
+              <div class="col-md-6">
+                <label for="">Username</label>
+                <input
+                  type="text"
+                  name="uname"
+                  class="form-control"
+                  placeholder="Username*"
+                />
+              </div>
+              <br />
+              <div class="col-md-6">
+                <label for="">Password</label>
+                <input
+                  type="password"
+                  name="pwd"
+                  class="form-control"
+                  placeholder="Password*"
+                />
+              </div>
+              <br />
+              <div class="col-md-6">
+                <label for="">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  class="form-control"
+                  placeholder="Email*"
+                />
+              </div>
+              <br />
+              <div class="col-md-6">
+                <label for="">Mobile</label>
+                <input
+                  type="text"
+                  name="mobile"
+                  class="form-control"
+                  placeholder="Mobile*"
+                />
+              </div>
+              <br />
+
+              <div class="col-md-6">
+                <label>Image</label>
+                <div class="custom-file">
+                  
+                  <input type="file" class="custom-file-input" id="customFile" name="file">
+                  <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+              </div>
+
+              
+              <br />
+              <div class="col-md-6">
+                <label for="">Address</label>
+                <textarea
+                  name="address"
+                  class="form-control"
+                  placeholder="Address"
+                ></textarea>
+              </div>
+              <br />
+            </div>
+            <button type="submit" class="lab-btn">
+              <span>Signup Now</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% include 'footer.html' %}
+{% endblock %}

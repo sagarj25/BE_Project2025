@@ -1,0 +1,66 @@
+{% include 'index.html' %} {% load static %} {% load custom_tags %} 
+{% block body %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+<div class="shop-cart mt-4">
+  <div class="container">
+    <div class="section-wrapper">
+        <h2 class="mb-2" align="center"> <u>My Order</u>
+        </h2>
+      <div class="cart-top">
+        <table id="example" class="display nowrap" style="width: 100%">
+          <thead>
+            <tr>
+              <th>OrderId</th>
+              <th>Status</th>
+              <th>Price</th>
+              <th>OrderDate</th>
+              <th>Address</th>
+              <th>Invoice</th>
+              <th style="text-align: center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in order %}
+            <tr>
+              <td>{{i.id}}</td>
+              <td><a href="/track-status/{{i.id}}/" class="btn btn-primary">{{i.get_status_display}}</a></td>
+              <td>{{i.price}}</td>
+              <td>{{i.created}}</td>
+              <td>{{i.state}},    {{i.country}}, {{i.zipcode}}</td>
+              <td>
+                <a href="/invoice/{{i.id}}/" title="Check/Print Invoice">
+                    <i class="fa fa-print" style="font-size:18px;color:white;border-radius:50%;border:1px solid green;padding:6px;background-color:green"></i>
+                </a>
+                
+              </td>
+              <td>
+                <a href="/orderdetail/{{i.id}}/" title="Show Order Detail">
+                    <i class="fa fa-info" style="font-size:18px;color:white;border-radius:50%;border:1px solid orange;padding:6px;padding-left:10px;padding-right:10px;background-color:orange"></i>
+                </a>
+                <a href="/delete-or-cancel-order/{{i.id}}/?action=delete" title="Delete Order" onclick="return confirm('Are your sure?')">
+                    <i  class="fa fa-trash" style="font-size:18px;color:white;border-radius:50%;border:1px solid red;padding:6px;background-color:red"></i>
+                </a>
+                {% if i.status < 5 %}
+                <a href="/delete-or-cancel-order/{{i.id}}/?action=cancel" title="Cancel order" onclick="return confirm('Are your sure?')">
+                    <i class="fa fa-times" style="font-size:18px;color:white;border-radius:50%;border:1px solid red;padding:6px;padding-left:8px;padding-right:8px;background-color:red"></i>
+                </a>
+                {% elif i.status == 5 %}
+                <a href="/delete-or-cancel-order/{{i.id}}/?action=return" title="Return order" onclick="return confirm('Are your sure?')">
+                    <i class="fa fa-refresh" style="font-size:18px;color:white;border-radius:50%;border:1px solid blue;padding:6px;padding-left:8px;padding-right:8px;background-color:blue"></i>
+                </a>
+                {% endif %}
+                
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% include 'tablecdn.html' %}
+{% include 'footer.html' %}
+
+{% endblock %}

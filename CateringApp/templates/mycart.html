@@ -1,0 +1,152 @@
+{% include 'index.html' %} {% load static %} 
+{% load custom_tags %} 
+{% block body %}
+
+<div class="shop-cart padding-tb">
+    <div class="container">
+        <div class="section-wrapper mb-15">
+            <div class="cart-top">
+                 <table id="example" class="display nowrap" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in productid %}
+                        <tr>
+                            <td class="product-item">
+                                <div class="p-thumb">
+                                    <a href="#"><img src="{{i|productimage}}" alt="product" style="width:100px;height:100px"></a>
+                                </div>
+                                <div class="p-content">
+                                    <a href="#">{{i|productname}}</a>
+                                </div>
+                            </td>
+                            <td>{{i|productprice}}</td>
+                            <td>
+                                <a href="/incredecre/{{i}}/?action=2" class="btn btn-warning" id="decrebtn-{{forloop.counter}}">-</a>
+                                    <input type="text" class="cart-plus-minus-box" type="text" id="shop_qty-{{forloop.counter}}" name="qtybutton" value="{% productqty i request.user %}" readonly />
+
+                                    <a href="/incredecre/{{i}}/?action=1" class="btn btn-warning">+</a>
+                            </td>
+                            <td id="totalprice-{{forloop.counter}}">{% producttotalprice i request.user %}</td>
+                            <td>
+                                <a href="/deletecart/{{i}}/" class="btn btn-warning"><img src="{% static 'assets/images/del.png' %}" alt="product"></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        
+                    </tbody>
+                </table>
+            </div>
+            <div class="cart-bottom">
+                <div class="cart-checkout-box">
+                    <form action="http://labartisan.net/" class="coupon">
+                        <input type="text" name="coupon" placeholder="Coupon Code..." class="cart-page-input-text">
+                        <input type="submit" value="Apply Coupon">
+                    </form>
+                    <form action="http://labartisan.net/" class="cart-checkout">
+                        <input type="submit" value="Update Cart">
+                        <input type="submit" value="Proceed to Checkout">
+                    </form>
+                </div>
+                <div class="shiping-box">
+                    <div class="row">
+                        <div class="col-md-6 col-12">
+                            <div class="calculate-shiping w-100">
+                                <h4>Calculate Shipping</h4>
+                                <form action="/ordernow/{{cart.id}}/" method="post">
+                                    {% csrf_token %}
+                                <div class="outline-select">
+                                    <select name='country' id="country" onchange="changecountry()" required>
+                                        <option value="">Select Country</option>
+                                        {% for i in country %}
+                                        <option value="{{i.country}}" {% if i.country == request.GET.country %}selected{% endif %}>{{i.country}}</option>
+                                        {% endfor %}
+                                        
+                                    </select>
+                                    <span class="select-icon"><i class="icofont-caret-down"></i></span>
+                                </div>
+                                <div class="outline-select shipping-select">
+                                    <select name="state" required>
+                                        <option value="">Select State</option>
+                                        {% for i in state %}
+                                        <option value="{{i}}">{{i}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <span class="select-icon"><i class="icofont-caret-down"></i></span>
+                                </div>
+                                <input type="text" name="zipcode" placeholder="Postcode/ZIP"
+                                    class="cart-page-input-text" required/>
+                                <input type="hidden" name="total" value="" id="order-total-3">
+                                <button type="submit" class="lab-btn"><span>Order Now</span></button>
+                            </div>
+                        </form>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="cart-overview">
+                                <h4>Cart Totals</h4>
+                                <ul>
+                                    <li>
+                                        <span class="pull-left">Cart Subtotal</span>
+                                        <p class="pull-right" id="order-subtotal">$ 0.00</p>
+                                    </li>
+                                    <li>
+                                        <span class="pull-left">Shipping and Handling</span>
+                                        <p class="pull-right">Free Shipping</p>
+                                    </li>
+                                    <li>
+                                        <span class="pull-left">Order Total</span>
+                                        <p class="pull-right" id="order-total">$ 2940.00</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var prolenth = '{{lengthpro}}';
+    var mytotal = 0;
+    for(var i=1;i<=prolenth*1;i++){
+        shop_qty = document.getElementById('shop_qty-'+i).value;
+        totalprice = parseFloat(document.getElementById('totalprice-'+i).innerHTML);
+        if(shop_qty == 1){
+            document.getElementById('decrebtn-'+i).href = "#";
+            document.getElementById('decrebtn-'+i).classList.remove('btn-warning');
+            document.getElementById('decrebtn-'+i).classList.add('btn-info');
+            
+        }
+        var mytotal = parseFloat(mytotal) + (totalprice);
+    }
+    var mytotal=(mytotal).toLocaleString(
+        undefined, {
+            minimumFractionDigits:2
+        }
+    );
+    document.getElementById('order-subtotal').innerHTML  = mytotal;
+    document.getElementById('order-total').innerHTML  = mytotal; 
+    document.getElementById('order-total-3').value  = mytotal; 
+    {% comment %} parseFloat(mytotal); {% endcomment %}
+
+    
+
+    function changecountry(){
+        country = document.getElementById('country').value;
+        window.location = "/mycart/?country="+country;
+    }
+</script>
+{% include 'tablecdn.html' %}
+{% include 'footer.html' %}
+{% endblock %}
+
+

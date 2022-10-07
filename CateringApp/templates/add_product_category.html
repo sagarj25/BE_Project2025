@@ -1,0 +1,54 @@
+{% extends 'adminindex.html' %} {% load static %} {% block body %}
+
+<div class="content-wrapper">
+  <div class="row">
+    <div class="col-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">
+            Basic form elements
+            <a
+              href="/vwproduct-cateogy/?action=inactive"
+              class="btn btn-danger"
+              style="float: right"
+              >Inactive</a
+            >
+            <a
+              href="/vwproduct-cateogy/?action=active"
+              class="btn btn-success mx-2"
+              style="float: right"
+              >Active</a
+            >
+
+            <a
+              href="/vwproduct-cateogy/"
+              class="btn btn-info"
+              style="float: right"
+              >List</a
+            >
+          </h4>
+          <p class="card-description">Basic form elements</p>
+          <form class="forms-sample" method="post" action="">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="exampleInputName1">Product Category Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="exampleInputName1"
+                placeholder="Name"
+                name="category"
+                value="{{data.name}}"
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+            <button class="btn btn-light">Cancel</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
