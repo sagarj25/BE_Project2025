@@ -19,7 +19,7 @@
           <h3 class="font-weight-bold">Welcome {{request.user.username}}</h3>
           <h6 class="font-weight-normal mb-0">
             All systems are running smoothly! You have
-            <span class="text-primary">3 unread alerts!</span>
+            <span class="text-primary"></span>
           </h6>
         </div>
         <div class="col-12 col-xl-4">
@@ -57,7 +57,7 @@
           <div class="card card-tale">
             <a href="/registered-user/">
             <div class="card-body">
-              <p class="mb-4">Total Customer</p>
+              <p class="mb-4">Total Registered User</p>
               <p class="fs-30 mb-2">{{tcust.count}}</p>
             </div>
           </a>
@@ -67,7 +67,7 @@
           <div class="card card-dark-blue">
             <a href="/vwproduct/">
             <div class="card-body">
-              <p class="mb-4">Total Product</p>
+              <p class="mb-4">Total Food</p>
               <p class="fs-30 mb-2">{{tprod.count}}</p>
             </div>
           </a>
@@ -79,7 +79,7 @@
           <div class="card card-light-blue">
             <a href="/vwproduct-cateogy/">
             <div class="card-body">
-              <p class="mb-4">Total Product Category</p>
+              <p class="mb-4">Total Food Category</p>
               <p class="fs-30 mb-2">{{tprodcat.count}}</p>
             </div>
           </a>
@@ -87,7 +87,7 @@
         </div>
         <div class="col-md-6 stretch-card transparent">
           <div class="card card-light-danger">
-            <a href="/registered-user/?status=1">
+            <a href="/all-review/">
             <div class="card-body">
               <p class="mb-4">Total Reviews</p>
               <p class="fs-30 mb-2">{{trev.count}}</p>
@@ -102,7 +102,7 @@
       <div class="row">
         <div class="col-md-6 mb-4 stretch-card transparent">
           <div class="card card-tale">
-            <a href="/registered-user/?status=1">
+            <a href="/orderlist/?status=today"">
             <div class="card-body">
               <p class="mb-4">Today’s Bookings</p>
               <p class="fs-30 mb-2">{{tdbook.count}}</p>
@@ -112,9 +112,9 @@
         </div>
         <div class="col-md-6 mb-4 stretch-card transparent">
           <div class="card card-dark-blue">
-            <a href="/registered-user/?status=1">
+            <a href="/orderlist/?order=All">
             <div class="card-body">
-              <p class="mb-4">Total Bookings</p>
+              <p class="mb-4">Total Order</p>
               <p class="fs-30 mb-2">{{tbook.count}}</p>
             </div>
           </a>
@@ -124,9 +124,9 @@
       <div class="row">
         <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
           <div class="card card-light-blue">
-            <a href="/registered-user/">
+            <a href="/orderlist/?status=5">
             <div class="card-body">
-              <p class="mb-4">Total Delivered Order</p>
+              <p class="mb-4">Total Completed Order</p>
               <p class="fs-30 mb-2">{{tdel.count}}</p>
             </div>
             </a>
@@ -147,5 +147,37 @@
       </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col-6 p-2">
+      <h6>Monthly Sales for Bar Graph</h6>
+      <canvas id="barChart"></canvas>
+    </div>
+    <div class="col-6 p-2">
+      <h6>Monthly Sales Pie Chart</h6>
+      <canvas id="pieChart"></canvas>
+    </div>
+  </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // Function to retrieve the chart data from the server
+  function fetchChartData(url, chartId, chartType) {
+      fetch(url)
+          .then(response => response.json())
+          .then(data => {
+              // Create the chart using Chart.js
+              var ctx = document.getElementById(chartId).getContext('2d');
+              new Chart(ctx, {
+                  type: chartType,
+                  data: data
+              });
+          });
+  }
+
+  // Fetch and render the bar chart
+  fetchChartData('/monthly_sales_bar_graph/', 'barChart', 'bar');
+
+  // Fetch and render the pie chart
+  fetchChartData('/monthly_sales_pie_chart/', 'pieChart', 'pie');
+</script>
 {% endblock %}

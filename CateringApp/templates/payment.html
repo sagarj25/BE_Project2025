@@ -1,0 +1,140 @@
+<html>
+{% load static %}
+<head>
+    <title>Payment Page|CANTEEN MANAGEMENT</title>
+    <link rel="stylesheet" href="{% static 'css/payment.css' %}"/>
+</head>
+<body>
+  <main class="container">
+    <div class="main">
+      <!-- Payment Method Section  -->
+      <section class="payment_method">
+        <h2 class="ship_head">Payment Method</h2>
+        <div class="card_info">
+          <form action="" method="post" onsubmit="return validateExpiryDate();">
+              {% csrf_token %}
+            <div class="card_head">
+              <h2 class="card_title">Debit or Credit Card</h2>
+            </div>
+            <div class="card_types">
+              <img class="card_img" src="https://cdn-icons-png.flaticon.com/512/349/349221.png" alt=""/>
+              <img class="card_img" src="https://cdn-icons-png.flaticon.com/512/349/349230.png" alt=""/>
+              <img class="card_img" src="https://cdn-icons-png.flaticon.com/512/349/349228.png" alt=""/>
+              <img class="card_img" src="https://img.icons8.com/fluency/512/mastercard.png" alt=""/>
+            </div>
+              <input type="text" name="holder_name" value="" placeholder="Card Holder" maxlength="60" required/>
+              <input type="text" name="number" value="" placeholder="Card Number" maxlength="16" minlength="16" required/>
+              <div>
+                  <input type="text" name="expiry" value="" placeholder="Expire" maxlength="5" minlength="5" oninput="formatExpiryDate()" required/>
+                  <input type="text" name="cvc" value="" placeholder="CVC" maxlength="3" minlength="3" required/>
+              </div>
+              <input type="hidden" name="total" value="{{total}}" id="total"/>
+              <input type="hidden" name="original_total" value="{{original_total}}" id="original_total"/>
+              <input type="hidden" name="tax" value="{{tax}}" id="tax"/>
+              <input type="hidden" name="payment_type" value="{{payment_type}}" id="payment_type"/>
+              <input type="hidden" name="pickup_time" value="{{pickup_time}}" id="pickup_time"/>
+
+            <span class="save_card">Save Card</span>
+            <button type="submit" class="confirm_btn">Confirm</button>
+          </form>
+        </div>
+
+        <div class="e_payment">
+          <div class="pay">
+            <img src="https://cdn-icons-png.flaticon.com/512/6124/6124998.png" alt="" />
+          </div>
+          <div class="pay">
+            <img src="https://cdn-icons-png.flaticon.com/512/5977/5977576.png" alt="" />
+          </div>
+          <div class="pay">
+            <img src="https://cdn-icons-png.flaticon.com/512/196/196565.png" alt="" />
+          </div>
+        </div>
+
+      </section>
+      <!-- Order Summary Section  -->
+      <section class="order_summary">
+        <h2 class="order_head">Order Summary</h2>
+        <div class="order_price">
+          <hr />
+          <div class="price">
+            <p>Order price:</p>
+            <p>Rs.{{original_total|floatformat:2}}</p>
+          </div>
+          <div class="price">
+            <p>Applied Discount:</p>
+            <p>Rs.{{0|floatformat:2}}</p>
+          </div>
+          <div class="price">
+            <p>Tax:</p>
+            <p>{{tax|floatformat:2}}</p>
+          </div>
+          <br />
+          <hr/>
+          <div class="total_price">
+            <p class="dark">Total:</p>
+            <p class="dark">Rs.{{total|floatformat:2}}</p>
+          </div>
+        </div>
+        <img class="qr_code" src="https://cdn-icons-png.flaticon.com/512/714/714390.png" alt="" />
+        <p class="condition">
+          Pay and Confirm Order by QR Code Using <b>Mobile Application</b>
+        </p>
+        <button class="review_btn">Review and Confirm</button>
+      </section>
+    </div>
+  </main>
+  <script>
+    function validateExpiryDate() {
+      var expiryInput = document.getElementsByName('expiry')[0];
+
+      // Remove any existing slashes and whitespace from the input
+      var expiryValue = expiryInput.value.replace(/\s|\//g, '');
+
+      // Check if the input is in the format MMYY or MM/YY
+      var regex = /^([01]?\d)(\d{2})$/;
+      if (!regex.test(expiryValue)) {
+        alert('Please enter a valid expiry date (MMYY or MM/YY format).');
+        return false;
+      }
+
+      // Get the month and year values from the input
+      var month = expiryValue.slice(0, 2);
+      var year = expiryValue.slice(2);
+
+      // Get the current date and time
+      var now = new Date();
+      var currentYear = now.getFullYear().toString().slice(-2);
+      var currentMonth = now.getMonth() + 1;
+
+      // Check if the expiry date is in the future
+      if (parseInt(year) < parseInt(currentYear) || (parseInt(year) === parseInt(currentYear) && parseInt(month) < currentMonth)) {
+        alert('Please enter a valid expiry date.');
+        return false;
+      }
+
+      // Add the slash (/) between the month and year
+      expiryInput.value = month + '/' + year;
+
+      return true;
+    }
+
+    function formatExpiryDate() {
+      var expiryInput = document.getElementsByName('expiry')[0];
+      var inputValue = expiryInput.value;
+
+      // Remove any existing slashes and whitespace from the input
+      var formattedValue = inputValue.replace(/\s|\//g, '');
+
+      // Add a slash (/) after the first two characters
+      if (formattedValue.length > 2) {
+        formattedValue = formattedValue.slice(0, 2) + '/' + formattedValue.slice(2);
+      }
+
+      // Update the input value
+      expiryInput.value = formattedValue;
+    }
+  </script>
+</body>
+
+</html>

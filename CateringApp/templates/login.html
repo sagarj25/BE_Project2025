@@ -1,22 +1,23 @@
 {% extends 'index.html' %} {% load static %} {% block body %}
 <div
   class="container my-3"
-  align="center"
+  
   style="border: 1px solid black; padding: 10px; width: 50%"
 >
-  <h4>Login Page</h4>
+  <h5 class="ml-3 mt-1">Login Page</h5><hr>
   <div class="contac-bottom">
     <div class="row justify-content-center">
       <div class="col-md-12">
         <form action="" method="post">
           {% csrf_token %}
           <div class="col-md-12">
-            <label for="">Username</label>
+            <label for="">Email</label>
             <input
-              type="text"
+              type="email"
               name="uname"
               class="form-control"
-              placeholder="Username*"
+              placeholder="Email*"
+              required
             />
           </div>
           <br />
@@ -27,16 +28,33 @@
               name="pwd"
               class="form-control"
               placeholder="Password*"
+              required
             />
           </div>
           <br />
-          <button type="submit" class="lab-btn col-12">
-            <span>Signin</span>
-          </button>
+          {% comment %} <div class="col-md-3"> {% endcomment %}
+            <button type="submit" class="lab-btn col-3">
+              <span>Signin</span>
+            </button>
+          {% comment %} </div> {% endcomment %}
+          {% comment %} <button class="col-5" align="right"></button> {% endcomment %}
+          {% comment %} <div class="col-md-3" align="right"></div> {% endcomment %}
+          {% comment %} <div class="col-md-4" align="right"> {% endcomment %}
+            <button type="button" class="lab-btn bg-primary col-4" onclick="forgotPassword()">
+              {% comment %} <button type="button" class="lab-btn bg-primary col-4"> {% endcomment %}
+                <span>Forgot Password</span>
+              {% comment %} </button> {% endcomment %}
+            </a>
+          {% comment %} </div> {% endcomment %}
         </form>
       </div>
     </div>
   </div>
 </div>
+<script>
+  function forgotPassword(){
+    window.location = '/forgot-password/';
+  }
+</script>
 {% include 'footer.html' %}
 {% endblock %}

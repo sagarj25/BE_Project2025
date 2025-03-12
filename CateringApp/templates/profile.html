@@ -1,4 +1,9 @@
 {% extends 'index.html' %} {% load static %} {% block body %}
+<style>
+  table tr{
+    color:black!important;
+  }
+</style>
 <div
   class="container my-3"
   align="center"
@@ -24,10 +29,6 @@
       <tr style="border-bottom: 1px solid lightgrey">
         <th>Mobile</th>
         <td>{{data.mobile}}</td>
-      </tr>
-      <tr style="border-bottom: 1px solid lightgrey">
-        <th>Address</th>
-        <td>{{data.address}}</td>
       </tr>
       <tr style="border-bottom: 1px solid lightgrey">
         <th>Image</th>

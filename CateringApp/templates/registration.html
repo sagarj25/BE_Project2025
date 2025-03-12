@@ -1,11 +1,11 @@
 {% extends 'index.html' %} {% load static %} {% block body %}
 <div class="container my-3">
-  <h4>Registration Page</h4>
+  <h5>Registration Page</h5><hr>
   <div class="contac-bottom">
     <div class="row justify-content-center">
       <div class="col-md-12">
         <div class="">
-          <form action="" method="POST" enctype="multipart/form-data">
+          <form action="" method="POST" id="myForm" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="row form-group">
               <div class="col-md-6">
@@ -16,6 +16,7 @@
                   class="form-control"
                   placeholder="First Name*"
                   autofocus="true"
+                  required
                 />
               </div>
               <br />
@@ -26,26 +27,7 @@
                   name="lname"
                   class="form-control"
                   placeholder="Last Name*"
-                />
-              </div>
-              <br />
-              <div class="col-md-6">
-                <label for="">Username</label>
-                <input
-                  type="text"
-                  name="uname"
-                  class="form-control"
-                  placeholder="Username*"
-                />
-              </div>
-              <br />
-              <div class="col-md-6">
-                <label for="">Password</label>
-                <input
-                  type="password"
-                  name="pwd"
-                  class="form-control"
-                  placeholder="Password*"
+                  required
                 />
               </div>
               <br />
@@ -56,9 +38,24 @@
                   name="email"
                   class="form-control"
                   placeholder="Email*"
+                  required
                 />
               </div>
               <br />
+              <div class="col-md-6">
+                <label for="">Password</label>
+                <input
+                  type="password"
+                  name="pwd"
+                  id="password"
+                  class="form-control"
+                  placeholder="Password*"
+                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}" 
+                  required
+                />
+              </div>
+              <br />
+              
               <div class="col-md-6">
                 <label for="">Mobile</label>
                 <input
@@ -66,30 +63,23 @@
                   name="mobile"
                   class="form-control"
                   placeholder="Mobile*"
+                  required
                 />
               </div>
-              <br />
+              <br/>
 
               <div class="col-md-6">
                 <label>Image</label>
                 <div class="custom-file">
                   
                   <input type="file" class="custom-file-input" id="customFile" name="file">
-                  <label class="custom-file-label" for="customFile">Choose file</label>
+                  <label class="custom-file-label" for="customFile">Choose file *</label>
                 </div>
               </div>
 
               
               <br />
-              <div class="col-md-6">
-                <label for="">Address</label>
-                <textarea
-                  name="address"
-                  class="form-control"
-                  placeholder="Address"
-                ></textarea>
-              </div>
-              <br />
+              
             </div>
             <button type="submit" class="lab-btn">
               <span>Signup Now</span>
@@ -100,5 +90,47 @@
     </div>
   </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $('#myForm').on('submit', function(e) {
+      e.preventDefault(); // Prevent default form submission
+  
+      var formData = new FormData(this);
+  
+      // Alternatively, you can send the form data to the server using AJAX
+      $.ajax({
+        url: '/signup/',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+          if(response['status']){
+            window.location = '/login/';
+          }
+          else{
+            alert('Email not verified Or user already exists.')
+          }
+        },
+        error: function(xhr, status, error) {
+          alert('Email not verified Or user already exists.')
+        }
+      });
+    });
+  });
+</script>
+<script>
+  var passwordInput = document.getElementById("password");
+  passwordInput.addEventListener("input", function() {
+    if (passwordInput.validity.patternMismatch) {
+      passwordInput.setCustomValidity("Password must contain at least 8 characters including at least one digit, one lowercase letter, one uppercase letter, and one special character.");
+    } 
+    else {
+      passwordInput.setCustomValidity("");
+    }
+  });
+</script>
 {% include 'footer.html' %}
 {% endblock %}

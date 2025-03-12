@@ -1,0 +1,43 @@
+{% extends 'index.html' %} {% load static %} {% block body %}
+<div class="container my-3" style="border: 1px solid black; padding: 10px; width: 50%">
+  <h5 class="ml-3 mt-1">Admin Login Page</h5><hr>
+  <div class="contac-bottom">
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <form action="" method="post">
+          {% csrf_token %}
+
+          <div class="col-md-12">
+            <label for="">Username</label>
+            <input
+              type="text"
+              name="uname"
+              class="form-control"
+              placeholder="Username*"
+              required
+            />
+          </div>
+          <br />
+
+          <div class="col-md-12">
+            <label for="">Password</label>
+            <input
+              type="password"
+              name="pwd"
+              class="form-control"
+              placeholder="Password*"
+              required
+            />
+          </div>
+          <br />
+
+          <button type="submit" class="lab-btn col-3">
+            <span>Signin</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% include 'footer.html' %}
+{% endblock %}

@@ -1,6 +1,7 @@
 from django import template
 import datetime
 from CateringApp.models import Product_Master, Cart
+from CateringApp.recommend import  get_recommendations_for_user
 from CateringApp.views import breaklist
 from CateringApp.models import *
 
@@ -10,6 +11,11 @@ def productimage(data):
     print("My Data is", data)
     product = Product_Master.objects.get(id=data)
     return product.image.url
+
+def productdesc(data):
+    print("My Data is", data)
+    product = Product_Master.objects.get(id=data)
+    return product.desc
 
 def productname(data):
     product = Product_Master.objects.get(id=data)
@@ -113,7 +119,7 @@ def checklist(data):
     data1 = data.split('/')
     lenth = len(data)
     mydata = ''
-    myli = ['/vwproduct/','/vwproduct-cateogy/', '/registered-user/', '/orderlist/', '/admin-order-detail/']
+    myli = ['/vwproduct/','/vwproduct-cateogy/', '/registered-user/', '/orderlist/', '/admin-order-detail/', '/view-staff/', '/all-review/']
 
     if lenth > 3:
         mydata = "/"+data1[1]+"/"
@@ -134,3 +140,33 @@ register.filter('productname', productname)
 register.filter('productprice', productprice)
 register.filter('callproduct',callproduct)
 register.filter('lengthfind',lengthfind)
+register.filter('productdesc',productdesc)
+
+@register.filter(name="get_order_status")
+def get_order_status(data):
+    return ORDERSTATUS
+
+@register.filter(name="get_order_data_status")
+def get_order_data_status(data):
+    try:
+        return ORDERSTATUS[(int(data)-1)][1]
+    except:
+        if data == 'today':
+            return 'Today'
+        return 'All'
+
+@register.filter(name="recommendationProduct")
+def recommendationProduct(request):
+    # Example usage
+    user_id = request.user.id
+    # ratings_matrix, item_similarity_matrix = connectWithDatabase()
+    # print(ratings_matrix, item_similarity_matrix)
+    # recommended_items = get_recommendations(user_id, ratings_matrix, item_similarity_matrix, top_n=5)
+    recommended_products = get_recommendations_for_user(user_id)
+
+    # Print the recommended products
+    print("Recommended Products:")
+    for product in recommended_products:
+        print(product)
+    print(f"Top 5 recommended items for User {user_id}: {recommended_products}") 
+    return recommended_products

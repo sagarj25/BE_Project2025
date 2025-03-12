@@ -1,0 +1,142 @@
+{% include 'adminindex.html' %} {% load static %} 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ 
+<style>
+  #active {
+    border-radius: 50%;
+  }
+
+  #inactive {
+    border-radius: 50%;
+  }
+
+  #active:hover {
+    cursor: default !important;
+  }
+
+  #inactive:hover {
+    cursor: default !important;
+  }
+
+  img{
+    width: 60px;
+    height: 60px;
+  }
+  
+  .table-responsive{
+    font-size:11px;
+  }
+  
+  .material-symbols-outlined{
+    font-size:14px;
+  }
+
+  td{
+    padding:0px;
+  }
+</style>
+
+<div class="main-panel" style="width:19900px">
+  <div class="content-wrapper">
+    <div class="card">
+      <div class="card-body">
+        <form action="" method="post">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-md-5">
+              <label for="">From Date</label>
+              <input type="date" name="from_date" class="form-control" value="{{from_date}}"/>
+            </div>
+            <div class="col-md-5">
+              <label for="">To Date</label>
+              <input type="date" name="to_date" class="form-control" value="{{to_date}}"/>
+            </div>
+            <div class="col-2 mt-2">
+              <button type="submit" class="btn btn-primary lab-btn mt-3">
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="card mt-2">
+      <div class="card-body">
+        {% for i in messages %}
+          <div class="alert alert-success" id="alert" role="alert" style="cursor: pointer; opacity: 0.85">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>Success!</strong> {{i}}!
+            <div class="progress active" role="progressbar" style="height: 5px">
+              <div class="progress-bar bg-success" id="pb" style="width: 100%; opacity: 0.5"></div>
+            </div>
+          </div>
+        {% endfor %}
+        
+        <h4 class="card-title">
+          {% if request.GET.active %}Inactive{% endif %} 
+          {{request.GET.order}} Order
+        </h4>
+
+        <p class="card-description">Report Between Dates <code>between-dates</code></p><hr/>
+        <div class="table-responsive">
+          <table id="example1" class="display nowrap" style="width: 100%">
+            <thead>
+              <tr>
+                <th>OrderId</th>
+                <th>User</th>
+                <th>Status</th>
+                <th>Price</th>
+                <th>Order Date</th>
+                <th>Invoice</th>
+                <th style="text-align: center">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in orderlist %}
+              <tr>
+                <td>{{i.id}}</td>
+                <td>{{i.user.user.username}}</td>
+                <td><a href="/admin-change-status/{{i.id}}/" class="btn btn-primary">{{i.get_status_display}}</a></td>
+                <td>{{i.price}}</td>
+                <td>{{i.created}}</td>
+                {% comment %} <td>{{i.state}},    {{i.country}}, {{i.zipcode}}</td> {% endcomment %}
+                <td>
+                  <a href="/invoice/{{i.id}}/" title="Check/Print Invoice">
+                      <i class="fa fa-print" style="font-size:18px;color:white;border-radius:50%;border:1px solid green;padding:6px;background-color:green"></i>
+                  </a>
+                </td>
+                <td align="center">
+                  <a href="/admin-order-detail/{{i.id}}/" title="Show Order Detail">
+                      <i class="fa fa-info" style="font-size:18px;color:white;border-radius:50%;border:1px solid orange;padding:6px;padding-left:10px;padding-right:10px;background-color:orange"></i>
+                  </a>
+                  {% comment %} {% if request.GET.active %}
+                    <a href="/delete-or-cancel-order/{{i.id}}/?action=delete&status={{request.GET.status}}&order={{request.GET.order}}&active=1" title="Activate Order" onclick="return confirm('Are your sure?')"><i class="fa fa-toggle-on fa-3x" aria-hidden="true"></i></a>{% else %}
+                    <a href="/delete-or-cancel-order/{{i.id}}/?action=delete&status={{request.GET.status}}&order={{request.GET.order}}" title="Inactivate Order" onclick="return confirm('Are your sure?')">
+                      <i class="fa fa-toggle-off fa-3x" aria-hidden="true"></i>
+                    </a>
+                  {% endif %} {% endcomment %}
+                  {% comment %} {% if i.status < 5 %}
+                  <a href="/delete-or-cancel-order/{{i.id}}/?action=cancel" title="Cancel order" onclick="return confirm('Are your sure?')">
+                      <i class="fa fa-times" style="font-size:18px;color:white;border-radius:50%;border:1px solid red;padding:6px;padding-left:8px;padding-right:8px;background-color:red"></i>
+                  </a>
+                  {% elif i.status == 5 %}
+                  <a href="/delete-or-cancel-order/{{i.id}}/?action=return" title="Return order" onclick="return confirm('Are your sure?')">
+                      <i class="fa fa-refresh" style="font-size:18px;color:white;border-radius:50%;border:1px solid blue;padding:6px;padding-left:8px;padding-right:8px;background-color:blue"></i>
+                  </a>
+                  {% endif %} {% endcomment %}
+                  
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  <div>
+</div>
+
+{% include 'tablecdn.html' %} {% include 'footeradmin.html' %}

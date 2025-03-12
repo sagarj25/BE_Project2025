@@ -155,6 +155,10 @@
             
               <table id="example2" class="display nowrap" style="width: 100%">
                 <tr style="border-bottom: 1px solid lightgrey">
+                  <th>PickUpTime</th>
+                  <td style="color:green"><b>{{order.pickup_time}}</b></td>
+                </tr>
+                <tr style="border-bottom: 1px solid lightgrey">
                   <th style="float: left;">Name</th>
                   <td>
                     {{order.user.user.first_name}}
@@ -174,10 +178,7 @@
                   <th>Mobile</th>
                   <td>{{order.user.mobile}}</td>
                 </tr>
-                <tr style="border-bottom: 1px solid lightgrey">
-                  <th>Address</th>
-                  <td>{{order.user.address}}</td>
-                </tr>
+                
                 <tr style="border-bottom: 1px solid lightgrey">
                   <th>Image</th>
                   <td>

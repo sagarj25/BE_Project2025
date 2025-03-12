@@ -1,0 +1,130 @@
+{% include 'adminindex.html' %} {% load static %} 
+
+<style>
+  #active {
+    border-radius: 50%;
+  }
+
+  #inactive {
+    border-radius: 50%;
+  }
+  #active:hover {
+    cursor: default !important;
+  }
+  #inactive:hover {
+    cursor: default !important;
+  }
+  img {
+    width: 60px;
+    height: 60px;
+  }
+  .table-responsive{
+    font-size:11px;
+  }
+  .material-symbols-outlined
+{
+  font-size:14px;
+}
+td{
+  padding:0px;
+}
+</style>
+
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            {% for i in messages %}
+            <div
+              class="alert alert-success"
+              id="alert"
+              role="alert"
+              style="cursor: pointer; opacity: 0.85"
+            >
+              <button
+                type="button"
+                class="close"
+                data-dismiss="alert"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <strong>Success!</strong> {{i}}!
+              <div
+                class="progress active"
+                role="progressbar"
+                style="height: 5px"
+              >
+                <div
+                  class="progress-bar bg-success"
+                  id="pb"
+                  style="width: 100%; opacity: 0.5"
+                ></div>
+              </div>
+            </div>
+            {% endfor %}
+            <h4 class="card-title">
+              View Staff
+
+              <a
+                href="/add-staff/"
+                class="btn btn-success mx-2"
+                style="float: right"
+                >Add Staff</a
+              >
+            </h4>
+
+            <p class="card-description">Dashboard <code>staff-list</code></p>
+            <hr />
+            <div class="container">
+              <table id="example1" class="display nowrap">
+                <thead class="p-3 mb-2 bg-gradient-info text-white">
+                  <tr>
+                    <th>#</th>
+                    <th>Username</th>
+                    <th>Userrole</th>
+                    <th>Created</th>
+                    <th style="text-align: center">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for i in data %}
+                  <tr>
+                    <td>{{forloop.counter}}</td>
+                    
+                    <td>{{i.username}}</td>
+                    <td>{{i.userrole}}</td>
+                    <td>{{i.created}}</td>
+                    
+                    <td>
+                      <a
+                        href="/change-staff/{{i.id}}/"
+                        class="btn btn-info"
+                        ><span class="material-symbols-outlined">
+                          edit
+                        </span></a
+                      >
+
+                      <a
+                        href="/delete-staff/{{i.id}}/"
+                        onclick="return confirm('Do you want to delete?')"
+                        class="btn btn-danger"
+                      >
+                         Delete 
+                      </a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+</div>
+
+{% include 'tablecdn.html' %} {% include 'footeradmin.html' %}

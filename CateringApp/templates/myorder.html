@@ -15,7 +15,7 @@
               <th>Status</th>
               <th>Price</th>
               <th>OrderDate</th>
-              <th>Address</th>
+              <th>PickUpTime</th>
               <th>Invoice</th>
               <th style="text-align: center">Action</th>
             </tr>
@@ -25,30 +25,26 @@
             <tr>
               <td>{{i.id}}</td>
               <td><a href="/track-status/{{i.id}}/" class="btn btn-primary">{{i.get_status_display}}</a></td>
-              <td>{{i.price}}</td>
+              <td>{{i.total_amount}}</td>
               <td>{{i.created}}</td>
-              <td>{{i.state}},    {{i.country}}, {{i.zipcode}}</td>
+              <td>{{i.pickup_time}}</td>
               <td>
                 <a href="/invoice/{{i.id}}/" title="Check/Print Invoice">
                     <i class="fa fa-print" style="font-size:18px;color:white;border-radius:50%;border:1px solid green;padding:6px;background-color:green"></i>
                 </a>
                 
               </td>
-              <td>
+              <td align="center">
                 <a href="/orderdetail/{{i.id}}/" title="Show Order Detail">
                     <i class="fa fa-info" style="font-size:18px;color:white;border-radius:50%;border:1px solid orange;padding:6px;padding-left:10px;padding-right:10px;background-color:orange"></i>
                 </a>
                 <a href="/delete-or-cancel-order/{{i.id}}/?action=delete" title="Delete Order" onclick="return confirm('Are your sure?')">
                     <i  class="fa fa-trash" style="font-size:18px;color:white;border-radius:50%;border:1px solid red;padding:6px;background-color:red"></i>
                 </a>
-                {% if i.status < 5 %}
-                <a href="/delete-or-cancel-order/{{i.id}}/?action=cancel" title="Cancel order" onclick="return confirm('Are your sure?')">
-                    <i class="fa fa-times" style="font-size:18px;color:white;border-radius:50%;border:1px solid red;padding:6px;padding-left:8px;padding-right:8px;background-color:red"></i>
-                </a>
-                {% elif i.status == 5 %}
-                <a href="/delete-or-cancel-order/{{i.id}}/?action=return" title="Return order" onclick="return confirm('Are your sure?')">
-                    <i class="fa fa-refresh" style="font-size:18px;color:white;border-radius:50%;border:1px solid blue;padding:6px;padding-left:8px;padding-right:8px;background-color:blue"></i>
-                </a>
+                {% if i.status < 3 %}
+                  <a href="/delete-or-cancel-order/{{i.id}}/?action=cancel" title="Cancel order" onclick="return confirm('Are your sure?')">
+                      <i class="fa fa-times" style="font-size:18px;color:white;border-radius:50%;border:1px solid red;padding:6px;padding-left:8px;padding-right:8px;background-color:red"></i>
+                  </a>
                 {% endif %}
                 
               </td>

@@ -2,30 +2,14 @@
 <html lang="en">
   {% load static %}
   {% load custom_tags %}
-
-  <!-- Mirrored from labartisan.net/demo/PoultryFarm/poultry-farm/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 12 May 2022 10:23:42 GMT -->
   <head>
-    <title>Catering Pro</title>
-    <meta charset="UTF-8" />
+    <title>CanteenXpress</title>
+    <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    <!-- google fonts -->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Sofia&effect=fire"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="shortcut icon"
-      type="image/x-icon"
-      href="{% static 'assets/images/x-icon/01.png' %}"
-    />
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=fire"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;display=swap" rel="stylesheet"/>
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/CanteenXpress.png' %}"/>
     <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/css/all.min.css' %}" />
@@ -33,22 +17,79 @@
     <link rel="stylesheet" href="{% static 'assets/css/lightcase.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/css/swiper.min.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
-  
-  <style>
+<style>
+  #chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+#chatbot-btn {
+    background-color: #7BD239; /* Match your theme color */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#chatbot-box {
+    display: none;
+    width: 300px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.chatbot-header {
+    background-color: #7BD239; /* Match your theme color */
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#chatbot-messages {
+    height: 200px;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ddd;
+}
+
+#chatbot-input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-top: 1px solid #ddd;
+    outline: none;
+}
+
+#chatbot-send {
+    width: 100%;
+    padding: 10px;
+    background-color: #7BD239; /* Match your theme color */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#chatbot-send:hover {
+    background-color: #6ab82d; /* Slightly darker shade for hover */
+}
     div.ex3 {
       background-color: lightblue;
       height: 400px;
       overflow-y: auto;
-
     }
-  </style>
-  <style>
-  
-    
     .alert {
       position: relative;
     }
-    
     .progress {
       position: absolute;
       width: 100%;
@@ -58,11 +99,25 @@
     .progress-bar {
       transition: none !important;
     }
-    </style>
-  </head>
-
+    .lab-ul li a:hover{
+      color:black!important;
+    }
+    label{
+      color:black!important;
+    }
+    p{
+      color:black!important;
+    }
+    li{
+      color:black!important;
+    }
+    
+  
+  
+  
+</style>
+</head>
   <body>
-    <!-- preloader start here -->
     <div class="preloader">
       <div class="preloader-inner">
         <div class="preloader-icon">
@@ -71,8 +126,6 @@
         </div>
       </div>
     </div>
-    <!-- preloader ending here -->
-
     <!--search area-->
     <div class="search-input">
       <div class="search-close">
@@ -86,19 +139,13 @@
       </form>
     </div>
     <!-- search area -->
-
     <!-- Mobile Menu Start Here -->
     <div class="mobile-menu transparent-header">
       <nav class="mobile-header">
         <div class="header-logo" style="height: 20px;">
-           
-          
-          <a href="index.html"
-            ><img
-              src="{% static 'assets/images/logo/catering.jpg' %}"
-              alt="logo"
-              style="height:20px;"
-          /></a>
+          <a href="/">
+            <img src="{% static 'images/CanteenXpress.png' %}" alt="logo" style="height:20px;"/>
+          </a>
         </div>
         <div class="header-bar">
           <span></span>
@@ -113,7 +160,7 @@
               <li class="active">
                 <a href="/">Home</a>
                 {% comment %} <ul class="lab-ul">
-                  <li><a href="index.html">Home Page One</a></li>
+                  <li><a href="/">Home Page One</a></li>
                   <li><a href="index-2.html">Home Page Two</a></li>
                 </ul> {% endcomment %}
               </li>
@@ -137,9 +184,9 @@
               </li>
               {% endcomment %}
               <li>
-                <a href="#0">Shop</a>
+                <a href="#0">Canteen Food</a>
                 <ul class="lab-ul">
-                  <li><a href="/product/">Products Page</a></li>
+                  <li><a href="/product/">Food Order</a></li>
                   {% comment %} <li><a href="product-single.html">Products Details</a></li> {% endcomment %}
                   <li><a href="/mycart/">Cart Page</a></li>
                 </ul>
@@ -151,14 +198,12 @@
       </nav>
     </div>
     <!-- Mobile Menu Ending Here -->
-
     <!-- desktop menu start here -->
     <header class="header-section">
       <div class="header-top">
         <div class="container">
           <div class="row justify-content-center align-items-center">
             <div class="col-12">
-              
               {% for i in messages %}
               <div class="alert alert-success" id="alert" role="alert" style="cursor:pointer;opacity:.85">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -168,20 +213,14 @@
                 </div>
               </div>
               {% endfor %}
-
               </div>
             <div class="col-lg-5 col-12">
-
               <div class="logo py-2">
-
-
-                <a href="index.html"
-                  ><img
-                    class="img-responsive"
-                    src="{% static 'assets/images/logo/catering.jpg' %} "
-                    alt="logo"
-                    style="height: 50px;"
-                /></a>
+                <a href="/">
+                  <img class="img-responsive" src="{% static 'images/CanteenXpress.png' %} "
+                    alt="logo" style="height: 80px;" />
+                  <span style="font-size:30px;font-weight:bold;color:#7BD239">CANTEENXPRESS</span>
+                </a>
               </div>
             </div>
             <div class="col-lg-7 col-12">
@@ -189,17 +228,12 @@
                 <ul class="lab-ul d-flex flex-wrap justify-content-end">
                   <li class="d-flex flex-wrap align-items-center">
                     <div class="ht-add-thumb mr-2">
-                      <img
-                        src="{% static 'assets/images/header/01.png' %}"
-                        alt="address"
-                        style="height: 20px;"
-                      />
+                      <img src="{% static 'assets/images/header/01.png' %}"
+                        alt="address" style="height: 20px;" />
                     </div>
                     <div class="ht-add-content">
-                      <span style="font-size:12px">F-9/94, AWHO Flats,</span>
-                      <span class="d-block " style="font-size:12px"
-                        >Jaipur, Rajasthan,INDIA</span
-                      >
+                      <span style="font-size:12px">Anandgram , Talegaon Dhamdhere</span>
+                      <span class="d-block " style="font-size:12px">Shirur, Pune, 412208</span>
                     </div>
                   </li>
                   <li class="d-flex flex-wrap align-items-center">
@@ -212,7 +246,7 @@
                     </div>
                     <div class="ht-add-content" >
                       <span style="font-size:12px">Send Mail </span>
-                      <span class="d-block" style="font-size:12px">pcb.aar@gmail.com</span>
+                      <span class="d-block" style="font-size:12px">canteenxpress123@gmail.com</span>
                     </div>
                   </li>
                   <li class="d-flex flex-wrap align-items-center">
@@ -225,7 +259,7 @@
                     </div>
                     <div class="ht-add-content">
                       <span style="font-size:12px">Make Call </span>
-                      <span class="d-block" style="font-size:12px">+88-6487-5962-563</span>
+                      <span class="d-block" style="font-size:12px">+91-1234567890</span>
                     </div>
                   </li>
                 </ul>
@@ -239,26 +273,22 @@
           <div class="container">
             <div class="primary-menu">
               <div class="main-area w-100">
-                <div
-                  class="main-menu d-flex flex-wrap align-items-center justify-content-between w-100"
-                >
+                <div class="main-menu d-flex flex-wrap align-items-center justify-content-between w-100">
                   <div class="logo">
-                    <a href="/"
-                      ><img
-                        src="{% static 'assets/images/logo/catering.jpg' %}"
-                        alt="logo"
-                        style="height: 50px;"
-                    /></a>
+                    <a href="/">
+                      <img src="{% static 'images/CanteenXpress.png' %}"
+                        alt="logo" style="height: 80px;"/>
+                    </a>
                   </div>
                   <ul class="lab-ul">
                     <li class="active">
                       <a href="/">Home</a>
-                      {% comment %} <ul class="lab-ul">
-                        <li>
-                          <a href="index.html" class="active">Home Page One</a>
-                        </li>
+                      {% comment %}
+                      <ul class="lab-ul">
+                        <li><a href="/" class="active">Home Page One</a></li>
                         <li><a href="index-2.html">Home Page Two</a></li>
-                      </ul> {% endcomment %}
+                      </ul>
+                      {% endcomment %}
                     </li>
                     <li><a href="/about/">About</a></li>
 
@@ -272,14 +302,14 @@
                     </li>
                     {% endcomment %}
                     <li>
-                      <a href="#0">Shop</a>
+                      <a href="#0">Canteen Food</a>
                       <ul class="lab-ul">
-                        <li><a href="/product/">Products Page</a></li>
+                        <li><a href="/product/">Canteen Food</a></li>
                         {% comment %} <li>
                           <a href="product-single.html">Products Details</a>
                         </li> {% endcomment %}
                         <li><a href="{% url 'myorder' %}">My Order</a></li>
-                        <li><a href="/mycart/">Cart Page</a></li>
+                        <li><a href="/mycart/">Cart</a></li>
                       </ul>
                     </li>
                     <li>
@@ -304,6 +334,7 @@
                     {% else %}
                     <li><a href="{% url 'signup' %}">SignUp</a></li>
                     <li><a href="{% url 'login' %}">SignIn</a></li>
+                    <li><a href="{% url 'admin-login' %}">Admin Login</a></li>
                     {% endif %}
                   </ul>
                   <ul class="lab-ul search-cart">
@@ -372,6 +403,97 @@
       </div>
     </header>
     <!-- desktop menu ending here -->
+    <div id="chatbot-container">
+      <button class="chatbot-btn" id="chatbot-btn">💬</button>
+      <div id="chatbot-box">
+          <div class="chatbot-header">Canteen Chatbot</div>
+          <div id="chatbot-messages"></div>
+          <input type="text" id="chatbot-input" placeholder="Type a message..." />
+          <button id="chatbot-send">Send</button>
+      </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const chatbotToggle = document.getElementById("chatbot-btn");
+        const chatbotBox = document.getElementById("chatbot-box");
+        const chatMessages = document.getElementById("chatbot-messages");
+        const chatInput = document.getElementById("chatbot-input");
+        const chatSend = document.getElementById("chatbot-send");
+    
+        // Toggle chatbot visibility
+        chatbotToggle.addEventListener("click", function () {
+            chatbotBox.style.display = chatbotBox.style.display === "none" ? "block" : "none";
+        });
+    
+        // Function to send message and display response
+        function sendMessage() {
+            const userMessage = chatInput.value.trim();
+            if (userMessage === "") return;
+    
+            // Display user message
+            const userMsgElem = document.createElement("div");
+            userMsgElem.style.color = "blue";
+            userMsgElem.innerHTML = "<b>You:</b> " + userMessage;
+            chatMessages.appendChild(userMsgElem);
+    
+            // Clear input field
+            chatInput.value = "";
+    
+            // Simulating chatbot response (for rule-based chatbot)
+            let botResponse = getChatbotResponse(userMessage);
+    
+            // Display bot response
+            setTimeout(() => {
+                const botMsgElem = document.createElement("div");
+                botMsgElem.style.color = "green";
+                botMsgElem.innerHTML = "<b>Bot:</b> " + botResponse;
+                chatMessages.appendChild(botMsgElem);
+                chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll
+            }, 500);
+        }
+    
+        // Send message on button click
+        chatSend.addEventListener("click", sendMessage);
+    
+        // Send message on pressing Enter key
+        chatInput.addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+                sendMessage();
+            }
+        });
+    
+        // Function to return rule-based chatbot responses
+        function getChatbotResponse(input) {
+          input = input.toLowerCase();
+          if (input.includes("hello") || input.includes("hi")) return "Hi there! How can I help you?";
+          if (input.includes("menu")) return "You can check our menu under the 'Canteen Food' section.";
+          if (input.includes("order")) return "To place an order, go to the 'Canteen Food' section and add items to your cart.";
+          if (input.includes("hours")) return "Our canteen is open from 8 AM to 8 PM.";
+          if (input.includes("contact")) return "You can reach us at +91-1234567890 or canteenxpress123@gmail.com.";
+          if (input.includes("delivery")) return "We currently offer in-canteen pickup only.";
+          for (let product in products) {
+            if (input.includes(product.toLowerCase())) {
+                return `The price of ${product} is ₹${products[product]}.`;
+            }
+        }
+    
+          return "I'm sorry, I didn't understand that. Can you please rephrase?";
+        }
+        
+        const products = {
+          "Burger": 50,
+          "Pizza": 150,
+          "Sandwich": 40,
+          "Pasta": 120,
+          "Coffee": 30
+      };
+        
+    });
+    
+    </script>
+    
+  
 
     {% block body %} {% endblock %}
 
@@ -454,6 +576,8 @@
         }
       }
   </script>
+  
+    
   </body>
   
   <!-- Mirrored from labartisan.net/demo/PoultryFarm/poultry-farm/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 12 May 2022 10:27:06 GMT -->

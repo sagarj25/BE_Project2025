@@ -19,7 +19,7 @@
   <body>
     
     <header>
-      <h1>Catering Invoice</h1>
+      <h1>Canteen Invoice</h1>
       <address contenteditable>
         <p>{{order.user.user.first_name}} {{order.user.user.last_name}}</p>
         <p>{{order.state}}<br />{{order.country}}, {{order.zipcode}}</p>
@@ -28,7 +28,7 @@
       <span
         ><img
           alt=""
-          src="{% static 'assets/images/logo/catering.jpg' %}" /><input
+          src="{% static 'images/canteen-automation.png' %}" style="width:150px;height:150px"/><input
           type="file"
           accept="image/*"
       /></span>
@@ -36,7 +36,7 @@
     <article>
       <h1>Recipient</h1>
       <address contenteditable>
-        <p>Catering Project<br /></p>
+        <p>Canteen Project<br /></p>
       </address>
       <table class="meta">
         <tr>
@@ -48,8 +48,8 @@
           <td><span contenteditable>{{order.created}}</span></td>
         </tr>
         <tr>
-          <th><span contenteditable>Amount Due</span></th>
-          <td><span id="prefix" contenteditable></span><span>{{order.price}}</span></td>
+          <th><span contenteditable>Total Amount</span></th>
+          <td><span id="prefix" contenteditable></span><span>{{order.total_amount}}</span></td>
         </tr>
       </table>
       <table class="inventory text-center">
@@ -62,17 +62,17 @@
           </tr>
         </thead>
         <tbody>
-            {% for i in productid %}
+          {% for i in productid %}
           <tr>
             <td>
               <span contenteditable>{{i|productname}}</span>
             </td>
             
             <td style="text-align:center">
-              <span data-prefix>$</span><span contenteditable>{{i|productprice|floatformat:2}}</span>
+              <span data-prefix>₹</span><span contenteditable>{{i|productprice|floatformat:2}}</span>
             </td>
             <td style="text-align:center"><span id="shop_qty-{{forloop.counter}}">{% orderqty i pid %}</span></td>
-            <td><span data-prefix>$</span><span id="totalprice-{{forloop.counter}}">{% ordertotalprice i pid %}</span></td>
+            <td><span data-prefix>₹</span><span id="totalprice-{{forloop.counter}}">{% ordertotalprice i pid %}</span></td>
           </tr>
           {% endfor %}
         </tbody>
@@ -80,15 +80,15 @@
       <table class="balance">
         <tr>
           <th><span contenteditable>Total</span></th>
-          <td><span data-prefix>$</span><span id="order-total"></span></td>
+          <td><span data-prefix>₹</span><span id="order-total"></span></td>
         </tr>
         <tr>
-          <th><span contenteditable>Amount Paid</span></th>
-          <td><span data-prefix>$</span><span contenteditable>0.00</span></td>
+          <th><span contenteditable>Amount(GST)</span></th>
+          <td><span data-prefix>₹</span><span contenteditable id="gst-total">{{order.gst_amount}}</span></td>
         </tr>
         <tr>
-          <th><span contenteditable>Balance Due</span></th>
-          <td><span data-prefix>$</span><span id="order-total-2"></span></td>
+          <th><span contenteditable>Total Balance</span></th>
+          <td><span data-prefix>₹</span><span id="order-total-2">{{order.total_amount}}</span></td>
         </tr>
       </table>
     </article>
@@ -96,7 +96,7 @@
       <h1><span contenteditable>Additional Notes</span></h1>
       <div contenteditable>
         <p>
-          
+          You can put your rating and query also, it will very helpful for us.
         </p>
       </div>
     </aside>
@@ -124,7 +124,7 @@
         );
         
         document.getElementById('order-total').innerHTML  = mytotal; 
-        document.getElementById('order-total-2').innerHTML  = mytotal; 
+        {% comment %} document.getElementById('order-total-2').innerHTML  = mytotal;  {% endcomment %}
          
         {% comment %} parseFloat(mytotal); {% endcomment %}
     

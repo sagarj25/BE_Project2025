@@ -48,13 +48,25 @@ td{
                     </div>
                     {% endfor %}
             <h4 class="card-title">
-              View Product
+              View Foods
 
               <a
                 href="/add-product/"
                 class="btn btn-success mx-2"
                 style="float: right"
                 >Add Product</a
+              >
+              <a
+                href="/vwproduct/?action=inactive"
+                class="btn btn-danger"
+                style="float: right"
+                >Inactive</a
+              >
+              <a
+                href="/vwproduct/?action=active"
+                class="btn btn-success mx-2"
+                style="float: right"
+                >Active</a
               >
             </h4>
 

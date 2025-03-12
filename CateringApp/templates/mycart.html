@@ -2,7 +2,8 @@
 {% load custom_tags %} 
 {% block body %}
 
-<div class="shop-cart padding-tb">
+<div class="shop-cart">
+    <h2 class="mb-2" align="center"> <u>My Cart</u></h2>
     <div class="container">
         <div class="section-wrapper mb-15">
             <div class="cart-top">
@@ -45,46 +46,40 @@
                 </table>
             </div>
             <div class="cart-bottom">
-                <div class="cart-checkout-box">
+                {% comment %} <div class="cart-checkout-box">
                     <form action="http://labartisan.net/" class="coupon">
                         <input type="text" name="coupon" placeholder="Coupon Code..." class="cart-page-input-text">
                         <input type="submit" value="Apply Coupon">
                     </form>
                     <form action="http://labartisan.net/" class="cart-checkout">
-                        <input type="submit" value="Update Cart">
-                        <input type="submit" value="Proceed to Checkout">
+                        
                     </form>
-                </div>
+                </div> {% endcomment %}
                 <div class="shiping-box">
                     <div class="row">
                         <div class="col-md-6 col-12">
                             <div class="calculate-shiping w-100">
-                                <h4>Calculate Shipping</h4>
-                                <form action="/ordernow/{{cart.id}}/" method="post">
+                                <h4>Cart Summary</h4>
+                                <form action="/payment/{{cart.id}}/" method="get" onsubmit="return validateForm();">
                                     {% csrf_token %}
-                                <div class="outline-select">
-                                    <select name='country' id="country" onchange="changecountry()" required>
-                                        <option value="">Select Country</option>
-                                        {% for i in country %}
-                                        <option value="{{i.country}}" {% if i.country == request.GET.country %}selected{% endif %}>{{i.country}}</option>
-                                        {% endfor %}
-                                        
-                                    </select>
-                                    <span class="select-icon"><i class="icofont-caret-down"></i></span>
-                                </div>
-                                <div class="outline-select shipping-select">
-                                    <select name="state" required>
-                                        <option value="">Select State</option>
-                                        {% for i in state %}
-                                        <option value="{{i}}">{{i}}</option>
-                                        {% endfor %}
-                                    </select>
-                                    <span class="select-icon"><i class="icofont-caret-down"></i></span>
-                                </div>
-                                <input type="text" name="zipcode" placeholder="Postcode/ZIP"
-                                    class="cart-page-input-text" required/>
-                                <input type="hidden" name="total" value="" id="order-total-3">
-                                <button type="submit" class="lab-btn"><span>Order Now</span></button>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label for="pickup_time">Pick Up Time</label><br>
+                                            <input type="time" name="pickup_time" id="pickup_time" placeholder="PickUp Time" class="form-control" required/>
+                                        </div><br>
+                                        <div class="col-12">
+                                            <label for="payment_type">Select Payment Type</label>
+                                            <select name="payment_type" id="payment_type" class="form-control" required/>
+                                                <option>Online Payment</option>
+                                                <option>Payment On Delivery</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <input type="hidden" name="total" value="" id="order-total-3">
+                                    <input type="hidden" name="original-total" value="" id="original-total">
+                                    <input type="hidden" name="tax" value="" id="tax">
+                                    <button type="submit" class="lab-btn"><span>Order Now</span></button>
                             </div>
                         </form>
                         </div>
@@ -97,8 +92,8 @@
                                         <p class="pull-right" id="order-subtotal">$ 0.00</p>
                                     </li>
                                     <li>
-                                        <span class="pull-left">Shipping and Handling</span>
-                                        <p class="pull-right">Free Shipping</p>
+                                        <span class="pull-left">GST & CGST</span>
+                                        <p class="pull-right" id="gst-cgst"></p>
                                     </li>
                                     <li>
                                         <span class="pull-left">Order Total</span>
@@ -134,8 +129,11 @@
         }
     );
     document.getElementById('order-subtotal').innerHTML  = mytotal;
-    document.getElementById('order-total').innerHTML  = mytotal; 
-    document.getElementById('order-total-3').value  = mytotal; 
+    document.getElementById('gst-cgst').innerHTML  = (mytotal * 5)/100;
+    document.getElementById('order-total').innerHTML  = (mytotal * 105)/100; 
+    document.getElementById('order-total-3').value  =  (mytotal * 105)/100; 
+    document.getElementById('original-total').value  =  mytotal; 
+    document.getElementById('tax').value  =  (mytotal * 5)/100; 
     {% comment %} parseFloat(mytotal); {% endcomment %}
 
     
@@ -145,6 +143,25 @@
         window.location = "/mycart/?country="+country;
     }
 </script>
+
+<script>
+    function validateForm() {
+      var timeInput = document.getElementById('pickup_time').value;
+      var currentTime = new Date();
+      var selectedTime = new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate(), parseInt(timeInput.split(':')[0]), parseInt(timeInput.split(':')[1]));
+
+      // Calculate the minimum and maximum allowed times
+      var minTime = new Date(currentTime.getTime() + (1 * 60 * 60 * 1000)); // Current time + 1 hour
+      var maxTime = new Date(currentTime.getTime() + (5 * 60 * 60 * 1000)); // Current time + 5 hours
+
+      if (selectedTime < minTime || selectedTime > maxTime) {
+        alert('Please select a time between 1 hour and 5 hours from now.');
+        return false;
+      }
+
+      return true;
+    }
+  </script>
 {% include 'tablecdn.html' %}
 {% include 'footer.html' %}
 {% endblock %}

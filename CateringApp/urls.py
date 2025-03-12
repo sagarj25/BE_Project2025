@@ -1,9 +1,14 @@
 from django.urls import path
 from .views import *
 
+from django.urls import path, include
+from django.urls import path
+from django.urls import include
+
 urlpatterns = [
     path('', home, name='home'),
     path('login/', login_user, name='login'),
+    path('admin-login/', login_admin, name='admin-login'),
     path('signup/', signup_user, name='signup'),
     path('profile/', profile, name='profile'),
     path('edtprofile/',editprofile, name='editprofile'),
@@ -42,12 +47,29 @@ urlpatterns = [
     path('gallery/', gallery, name="gallery"),
     path('about/', about, name="about"),
     
+    path('all-review/', all_review, name="all-review"),
+    path('delete-or-cancel-review/<int:pid>/', delete_review, name="delete-or-cancel-review"),
     path('orderlist/', orderList, name="orderList"),
     path('admin-change-status/<int:pid>/', admin_change_status, name="admin_change_status"),
     path('change-tracking-status/<int:pid>/', change_tarcking_status, name="change_tarcking_status"),
     path('admin-order-detail/<int:pid>/', adminOrderDetail, name="adminOrderDetail"),
+    path('admin-report-generation/', report_generation, name="adminreportgeneration"),
     
     path('change-password/', change_password, name="change_password"),
+    path('add-staff/', add_staff, name="add_staff"),
+    path('change-staff/<int:pid>/', add_staff, name="change-staff"),
+    path('delete-staff/<int:pid>/', delete_staff, name="delete-staff"),
+    path('add-comment/<int:pid>/<int:oid>/', add_comment, name="add-comment"),
+    path('view-staff/', view_staff, name="view-staff"),
+    path('monthly_sales_bar_graph/', monthly_sales_bar_graph, name='monthly_sales_bar_graph'),
+    path('monthly_sales_pie_chart/', monthly_sales_pie_chart, name='monthly_sales_pie_chart'),
 
+    path('payment/<int:pid>/', payment, name="payment"),
+    path('forgot-password/', forgot_password, name="forgot-password"),
+    path('send-otp/', send_otp, name="send-otp"),
+    path('match-otp/', match_otp, name="match-otp"),
+
+    path("api/", include("chatbot.urls")),
+    
 ]
     

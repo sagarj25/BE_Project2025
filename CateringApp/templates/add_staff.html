@@ -1,0 +1,82 @@
+{% extends 'adminindex.html' %} 
+{% load static %} 
+{% block body %}
+
+<style>
+.custom-file-input{
+    height:40px;
+    padding:20px;
+}
+</style>
+
+
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">
+              {% if pid %}Change{% else %}Add{% endif %} Staff
+              
+              <a href="/view-staff/" class="btn btn-info" style="float: right"
+                >List</a
+              >
+            </h4>
+            <p class="card-description">{% if pid %}Change{% else %}Add{% endif %} Staff </p>
+            <form
+              class="forms-sample"
+              method="post"
+              action=""
+              enctype="multipart/form-data"
+            >
+              {% csrf_token %}
+              <div class="row">
+                <div class="form-group col-4">
+                  <label for="exampleInputName1">Username</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="username"
+                    placeholder="Username"
+                    name="username"
+                    value="{{staff.username}}"
+                  />
+                </div>
+                <div class="form-group col-4">
+                  <label for="exampleInputName1">Userrole</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="userrole"
+                    placeholder="Ex Cook, Waiter and Manager etc."
+                    name="userrole"
+                    value="{{staff.userrole}}"
+                  />
+                </div>
+
+                <div class="form-group col-4">
+                  <label for="exampleInputName1">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    placeholder="Password"
+                    name="password"
+                    value="{{staff.password}}"
+                  />
+                </div>
+            </div>
+              <button type="submit" class="btn btn-primary mr-2">Submit</button>
+              <button type="reset" class="btn btn-light">Cancel</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>
+  <script>
+    CKEDITOR.replace( 'editor1' );
+  </script>
+
+  {% endblock %}

@@ -6,7 +6,7 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">
-            Basic form elements
+            Canteen Food Category
             <a
               href="/vwproduct-cateogy/?action=inactive"
               class="btn btn-danger"
@@ -20,27 +20,29 @@
               >Active</a
             >
 
-            <a
-              href="/vwproduct-cateogy/"
+            <a href="/vwproduct-cateogy/"
               class="btn btn-info"
               style="float: right"
               >List</a
             >
           </h4>
-          <p class="card-description">Basic form elements</p>
-          <form class="forms-sample" method="post" action="">
+          <p class="card-description">Add more choices</p>
+          <form class="forms-sample" method="post" action="" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group">
-              <label for="exampleInputName1">Product Category Name</label>
-              <input
-                type="text"
-                class="form-control"
-                id="exampleInputName1"
-                placeholder="Name"
-                name="category"
-                value="{{data.name}}"
-              />
+              <label for="exampleInputName1">Canteen Category Name</label>
+              <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="category" value="{{data.name}}"/>
             </div>
+
+            <div class="form-group">
+              <label for="exampleInputName1">Canteen Images</label>
+              <input type="file" class="form-control" id="image" placeholder="Name" name="image"/>
+            </div>
+            {% if data.image %}
+            <div class="form-group">
+              <img src="{{data.image.url}}" style="width:100px">
+            </div>
+            {% endif %}
 
             <button type="submit" class="btn btn-primary mr-2">Submit</button>
             <button class="btn btn-light">Cancel</button>
