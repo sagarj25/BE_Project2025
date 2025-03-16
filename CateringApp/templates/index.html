@@ -5,6 +5,7 @@
   <head>
     <title>CanteenXpress</title>
     <meta charset="UTF-8"/>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=fire"/>
@@ -17,71 +18,8 @@
     <link rel="stylesheet" href="{% static 'assets/css/lightcase.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/css/swiper.min.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
+    
 <style>
-  #chatbot-container {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-}
-
-#chatbot-btn {
-    background-color: #7BD239; /* Match your theme color */
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    font-size: 24px;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-#chatbot-box {
-    display: none;
-    width: 300px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-}
-
-.chatbot-header {
-    background-color: #7BD239; /* Match your theme color */
-    color: white;
-    padding: 10px;
-    font-weight: bold;
-    text-align: center;
-}
-
-#chatbot-messages {
-    height: 200px;
-    overflow-y: auto;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-bottom: 1px solid #ddd;
-}
-
-#chatbot-input {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-top: 1px solid #ddd;
-    outline: none;
-}
-
-#chatbot-send {
-    width: 100%;
-    padding: 10px;
-    background-color: #7BD239; /* Match your theme color */
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-#chatbot-send:hover {
-    background-color: #6ab82d; /* Slightly darker shade for hover */
-}
     div.ex3 {
       background-color: lightblue;
       height: 400px;
@@ -403,98 +341,13 @@
       </div>
     </header>
     <!-- desktop menu ending here -->
-    <div id="chatbot-container">
-      <button class="chatbot-btn" id="chatbot-btn">💬</button>
-      <div id="chatbot-box">
-          <div class="chatbot-header">Canteen Chatbot</div>
-          <div id="chatbot-messages"></div>
-          <input type="text" id="chatbot-input" placeholder="Type a message..." />
-          <button id="chatbot-send">Send</button>
-      </div>
-  </div>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const chatbotToggle = document.getElementById("chatbot-btn");
-        const chatbotBox = document.getElementById("chatbot-box");
-        const chatMessages = document.getElementById("chatbot-messages");
-        const chatInput = document.getElementById("chatbot-input");
-        const chatSend = document.getElementById("chatbot-send");
     
-        // Toggle chatbot visibility
-        chatbotToggle.addEventListener("click", function () {
-            chatbotBox.style.display = chatbotBox.style.display === "none" ? "block" : "none";
-        });
-    
-        // Function to send message and display response
-        function sendMessage() {
-            const userMessage = chatInput.value.trim();
-            if (userMessage === "") return;
-    
-            // Display user message
-            const userMsgElem = document.createElement("div");
-            userMsgElem.style.color = "blue";
-            userMsgElem.innerHTML = "<b>You:</b> " + userMessage;
-            chatMessages.appendChild(userMsgElem);
-    
-            // Clear input field
-            chatInput.value = "";
-    
-            // Simulating chatbot response (for rule-based chatbot)
-            let botResponse = getChatbotResponse(userMessage);
-    
-            // Display bot response
-            setTimeout(() => {
-                const botMsgElem = document.createElement("div");
-                botMsgElem.style.color = "green";
-                botMsgElem.innerHTML = "<b>Bot:</b> " + botResponse;
-                chatMessages.appendChild(botMsgElem);
-                chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll
-            }, 500);
-        }
-    
-        // Send message on button click
-        chatSend.addEventListener("click", sendMessage);
-    
-        // Send message on pressing Enter key
-        chatInput.addEventListener("keypress", function (e) {
-            if (e.key === "Enter") {
-                sendMessage();
-            }
-        });
-    
-        // Function to return rule-based chatbot responses
-        function getChatbotResponse(input) {
-          input = input.toLowerCase();
-          if (input.includes("hello") || input.includes("hi")) return "Hi there! How can I help you?";
-          if (input.includes("menu")) return "You can check our menu under the 'Canteen Food' section.";
-          if (input.includes("order")) return "To place an order, go to the 'Canteen Food' section and add items to your cart.";
-          if (input.includes("hours")) return "Our canteen is open from 8 AM to 8 PM.";
-          if (input.includes("contact")) return "You can reach us at +91-1234567890 or canteenxpress123@gmail.com.";
-          if (input.includes("delivery")) return "We currently offer in-canteen pickup only.";
-          for (let product in products) {
-            if (input.includes(product.toLowerCase())) {
-                return `The price of ${product} is ₹${products[product]}.`;
-            }
-        }
-    
-          return "I'm sorry, I didn't understand that. Can you please rephrase?";
-        }
-        
-        const products = {
-          "Burger": 50,
-          "Pizza": 150,
-          "Sandwich": 40,
-          "Pasta": 120,
-          "Coffee": 30
-      };
-        
-    });
-    
-    </script>
-    
+    <!-- chatbot start here -->
   
-
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+<script src="https://files.bpcontent.cloud/2025/03/16/01/20250316015951-P36SLY64.js"></script>
+    
+    <!-- chatbot end here -->
     {% block body %} {% endblock %}
 
     <!-- footer section start here -->

@@ -69,7 +69,7 @@ urlpatterns = [
     path('send-otp/', send_otp, name="send-otp"),
     path('match-otp/', match_otp, name="match-otp"),
 
-    path("api/", include("chatbot.urls")),
+    
     
 ]
     

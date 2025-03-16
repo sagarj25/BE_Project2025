@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'CateringApp',
-    'chatbot',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -50,7 +50,30 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware', 
 ]
+
+CSP_SCRIPT_SRC = [
+    "'self'",
+    "https://cdn.botpress.cloud",
+    "https://app.botpress.cloud"
+]
+CSP_FRAME_SRC = [
+    "https://app.botpress.cloud"
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "https://app.botpress.cloud",
+    "https://cdn.botpress.cloud",
+    "https://messaging.botpress.cloud",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://app.botpress.cloud",
+    "https://cdn.botpress.cloud",
+    "https://messaging.botpress.cloud",
+]
+
 
 ROOT_URLCONF = 'CanteenManagement.urls'
 
