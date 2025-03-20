@@ -6332,16 +6332,16 @@ img {
 }
 
 .footer-bottom {
-  padding: 27px 0;
+  /* padding: 10px 0; */
 }
 .footer-bottom p {
-  margin-bottom: 0;
+  /* margin-bottom: 0; */
   font-weight: 600;
   color: #181818;
 }
 .footer-bottom p a {
   color: #ffffff;
-  margin: 0 5px;
+  /* margin: 0 5px; */
 }
 
 /*# sourceMappingURL=style.css.map */

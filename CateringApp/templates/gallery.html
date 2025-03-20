@@ -1,116 +1,128 @@
-{% extends 'index.html' %} 
-{% load static %} 
-{% load custom_tags %}  
+{% extends 'index.html' %}
+{% load static %}
+{% load custom_tags %}
 {% block body %}
 
 
-		<!-- Page Header Section Start Here -->
-		<section class="page-header bg_img padding-tb">
-			<div class="overlay"></div>
-			<div class="container">
-				<div class="page-header-content-area">
-					<h4 class="ph-title">CanteenXpress Products Gallery</h4>
-					<ul class="lab-ul">
-						<li><a href="/">Home</a></li>
-						<li><a class="active">Gallery</a></li>
-					</ul>
-				</div>
-			</div>
-		</section>
-		<!-- Page Header Section Ending Here -->
+<!-- Page Header Section Start Here -->
+<section class="page-header bg_img padding-tb">
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="page-header-content-area">
+			<h4 class="ph-title">CanteenXpress Products Gallery</h4>
+			<ul class="lab-ul">
+				<li><a href="/">Home</a></li>
+				<li><a class="active">Gallery</a></li>
+			</ul>
+		</div>
+	</div>
+</section>
+<!-- Page Header Section Ending Here -->
 
 
-		<!-- Gallery-2  start Here -->
-		<div class="gallery-2 padding-tb">
-			<div class="container">
-				<div class="row mb-15">
-					<div class="col-12">
-						<div class="gallery-grid-item">
-							<div class="grid-items">
-                                <div class="row">
-                                 {% for i in product %}
-                                 {% if forloop.counter < 3 %}
-                                     <div class="col-md-3">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <a href="{{i.image.url}}" data-rel="lightcase:myCollection:slideshow">
-                                                    <img src="{{i.image.url}}" alt="gallery-img" style="width:270px;height:400px"> 
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {% else %}
-                                    <div class="col-md-3">
-                                        <a href="{{i.image.url}}" data-rel="lightcase:myCollection:slideshow">
-                                            <img src="{{i.image.url}}" alt="gallery-img" style="width:270px;height:400px"> 
-                                        </a>
-                                    </div>
-                                    {% endif %}
-                                {% endfor %}
-                                </div>
-							</div>
-							{% comment %} <div class="grid-items gap-5 mb-3">
-								<a href="{% static 'assets/images/gallery/mason/02.jpg' %}" data-rel="lightcase:myCollection:slideshow">
-									<img src="{% static 'assets/images/gallery/mason/02.jpg' %}" alt="gallery-img">
-								</a>
-							</div>
-							<div class="grid-items">
-								<a href="{% static 'assets/images/gallery/mason/03.jpg' %}" data-rel="lightcase:myCollection:slideshow">
-									<img src="{% static 'assets/images/gallery/mason/03.jpg' %}" alt="gallery-img">
-								</a>
-							</div>
-							<div class="grid-items">
-								<a href="{% static 'assets/images/gallery/mason/04.jpg' %}" data-rel="lightcase:myCollection:slideshow">
-									<img src="{% static 'assets/images/gallery/mason/04.jpg' %}" alt="gallery-img">
-								</a>
-							</div>
-							<div class="grid-items">
-								<a href="{% static 'assets/images/gallery/mason/05.jpg' %}" data-rel="lightcase:myCollection:slideshow">
-									<img src="{% static 'assets/images/gallery/mason/05.jpg' %}" alt="gallery-img">
-								</a>
-
-							</div>
-							<div class="grid-items">
-								<a href="{% static 'assets/images/gallery/mason/06.jpg' %}" data-rel="lightcase:myCollection:slideshow">
-									<img src="{% static 'assets/images/gallery/mason/06.jpg' %}" alt="gallery-img">
-								</a>
-							</div>
-							<div class="grid-items">
-								<a href="{% static 'assets/images/gallery/mason/07.jpg' %}" data-rel="lightcase:myCollection:slideshow">
-									<img src="{% static 'assets/images/gallery/mason/07.jpg' %}" alt="gallery-img">
-								</a>
-							</div>
-							<div class="grid-items">
-								<a href="{% static 'assets/images/gallery/mason/08.jpg' %}" data-rel="lightcase:myCollection:slideshow">
-									<img src="{% static 'assets/images/gallery/mason/08.jpg' %}" alt="gallery-img">
-								</a>
-							</div>
-							<div class="grid-items">
-								<a href="{% static 'assets/images/gallery/mason/09.jpg' %}" data-rel="lightcase:myCollection:slideshow">
-									<img src="{% static 'assets/images/gallery/mason/09.jpg' %}" alt="gallery-img">
-								</a>
-							</div>
-							<div class="grid-items">
-								<a href="{% static 'assets/images/gallery/mason/10.jpg' %}" data-rel="lightcase:myCollection:slideshow">
-									<img src="{% static 'assets/images/gallery/mason/10.jpg' %}" alt="gallery-img">
-								</a>
-							</div>
-							<div class="grid-items">
-								<a href="{% static 'assets/images/gallery/mason/11.jpg' %}" data-rel="lightcase:myCollection:slideshow">
-									<img src="{% static 'assets/images/gallery/mason/11.jpg' %}" alt="gallery-img">
-								</a>
-							</div>
-							<div class="grid-items">
-								<a href="{% static 'assets/images/gallery/mason/12.jpg' %}" data-rel="lightcase:myCollection:slideshow">
-									<img src="{% static 'assets/images/gallery/mason/12.jpg' %}" alt="gallery-img">
-								</a>
-							</div> {% endcomment %}
+<!-- Gallery-2  start Here -->
+<div class="gallery-2 mb-3 rounded">
+	<div class="container p-3  rounded ">
+		<div class="row mb-5 rounded">
+			<div class="col-12 rounded">
+				<div class="gallery-grid-item rounded">
+					<div class="grid-items rounded">
+						<div class="row rounded p-4">
+							{% for i in product %}
+							{% if forloop.counter < 3 %} <div class="col-md-3 p-2 rounded">
+								<div class="row rounded">
+									<div class="col-md-12 rounded">
+										<a href="{{i.image.url}}" data-rel="lightcase:myCollection:slideshow">
+											<img src="{{i.image.url}}" alt="gallery-img"
+												style="width:300px;height:400px;border-radius: 10px;">
+										</a>
+									</div>
+								</div>
 						</div>
+						{% else %}
+						<div class="col-md-3 p-2 rounded">
+							<a href="{{i.image.url}}" data-rel="lightcase:myCollection:slideshow">
+								<img src="{{i.image.url}}" alt="gallery-img"
+									style="width:300px;height:400px; border-radius: 10px;">
+							</a>
+						</div>
+						{% endif %}
+						{% endfor %}
 					</div>
 				</div>
+				{% comment %} <div class="grid-items gap-5 mb-5 rounded">
+					<a href="{% static 'assets/images/gallery/mason/02.jpg' %}"
+						data-rel="lightcase:myCollection:slideshow">
+						<img src="{% static 'assets/images/gallery/mason/02.jpg' %}" alt="gallery-img">
+					</a>
+				</div>
+				<div class="grid-items rounded">
+					<a href="{% static 'assets/images/gallery/mason/03.jpg' %}"
+						data-rel="lightcase:myCollection:slideshow">
+						<img src="{% static 'assets/images/gallery/mason/03.jpg' %}" alt="gallery-img">
+					</a>
+				</div>
+				<div class="grid-items rounded">
+					<a href="{% static 'assets/images/gallery/mason/04.jpg' %}"
+						data-rel="lightcase:myCollection:slideshow">
+						<img src="{% static 'assets/images/gallery/mason/04.jpg' %}" alt="gallery-img">
+					</a>
+				</div>
+				<div class="grid-items rounded">
+					<a href="{% static 'assets/images/gallery/mason/05.jpg' %}"
+						data-rel="lightcase:myCollection:slideshow">
+						<img src="{% static 'assets/images/gallery/mason/05.jpg' %}" alt="gallery-img">
+					</a>
+
+				</div>
+				<div class="grid-items rounded">
+					<a href="{% static 'assets/images/gallery/mason/06.jpg' %}"
+						data-rel="lightcase:myCollection:slideshow">
+						<img src="{% static 'assets/images/gallery/mason/06.jpg' %}" alt="gallery-img">
+					</a>
+				</div>
+				<div class="grid-items rounded">
+					<a href="{% static 'assets/images/gallery/mason/07.jpg' %}"
+						data-rel="lightcase:myCollection:slideshow">
+						<img src="{% static 'assets/images/gallery/mason/07.jpg' %}" alt="gallery-img">
+					</a>
+				</div>
+				<div class="grid-items rounded">
+					<a href="{% static 'assets/images/gallery/mason/08.jpg' %}"
+						data-rel="lightcase:myCollection:slideshow">
+						<img src="{% static 'assets/images/gallery/mason/08.jpg' %}" alt="gallery-img">
+					</a>
+				</div>
+				<div class="grid-items rounded">
+					<a href="{% static 'assets/images/gallery/mason/09.jpg' %}"
+						data-rel="lightcase:myCollection:slideshow">
+						<img src="{% static 'assets/images/gallery/mason/09.jpg' %}" alt="gallery-img">
+					</a>
+				</div>
+				<div class="grid-items rounded">
+					<a href="{% static 'assets/images/gallery/mason/10.jpg' %}"
+						data-rel="lightcase:myCollection:slideshow">
+						<img src="{% static 'assets/images/gallery/mason/10.jpg' %}" alt="gallery-img">
+					</a>
+				</div>
+				<div class="grid-items rounded">
+					<a href="{% static 'assets/images/gallery/mason/11.jpg' %}"
+						data-rel="lightcase:myCollection:slideshow">
+						<img src="{% static 'assets/images/gallery/mason/11.jpg' %}" alt="gallery-img">
+					</a>
+				</div>
+				<div class="grid-items rounded">
+					<a href="{% static 'assets/images/gallery/mason/12.jpg' %}"
+						data-rel="lightcase:myCollection:slideshow">
+						<img src="{% static 'assets/images/gallery/mason/12.jpg' %}" alt="gallery-img">
+					</a>
+				</div> {% endcomment %}
 			</div>
 		</div>
-		<!-- Gallery-2  ending Here -->
+	</div>
+</div>
+
+<!-- Gallery-2  ending Here -->
 
 
 
