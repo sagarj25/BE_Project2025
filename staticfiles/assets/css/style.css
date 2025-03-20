@@ -310,7 +310,7 @@ img {
 }
 
 .bg-theme {
-  background: #7BD239;
+  background: #dc3545 !important;
 }
 
 .bg-ash {
@@ -374,7 +374,7 @@ img {
   width: 40px;
   height: 40px;
   line-height: 40px;
-  background: #7BD239;
+  background: #dc3545;
   text-align: center;
   border-radius: 50%;
   font-size: 24px;

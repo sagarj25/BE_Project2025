@@ -38,16 +38,16 @@
       transition: none !important;
     }
     .lab-ul li a:hover{
-      color:black!important;
+      color:black !important;
     }
     label{
-      color:black!important;
+      color:black !important;
     }
     p{
-      color:black!important;
+      color:black !important;
     }
     li{
-      color:black!important;
+      color:black !important;
     }
     
   
@@ -79,7 +79,7 @@
     <!-- search area -->
     <!-- Mobile Menu Start Here -->
     <div class="mobile-menu transparent-header">
-      <nav class="mobile-header">
+      <nav class="mobile-header ">
         <div class="header-logo" style="height: 20px;">
           <a href="/">
             <img src="{% static 'images/CanteenXpress.png' %}" alt="logo" style="height:20px;"/>
@@ -91,41 +91,21 @@
           <span></span>
         </div>
       </nav>
-      <nav class="mobile-menu">
+      <nav class="mobile-menu bg-danger">
         <div class="mobile-menu-area">
           <div class="mobile-menu-area-inner">
             <ul class="lab-ul">
               <li class="active">
                 <a href="/">Home</a>
-                {% comment %} <ul class="lab-ul">
-                  <li><a href="/">Home Page One</a></li>
-                  <li><a href="index-2.html">Home Page Two</a></li>
-                </ul> {% endcomment %}
+                
               </li>
               <li><a href="/about/">About</a></li>
-              {% comment %}
-              <li>
-                <a href="#0">Pages</a>
-                <ul class="lab-ul">
-                  <li><a href="team.html">Team Membar</a></li>
-                  <li><a href="faq-page.html">Faq Page</a></li>
-                  <li><a href="404.html">404 Page</a></li>
-                </ul>
-              </li>
-              {% endcomment %} {% comment %}
-              <li>
-                <a href="#0">Blog</a>
-                <ul class="lab-ul">
-                  <li><a href="blog.html">Blog</a></li>
-                  <li><a href="blog-single.html">Blog Details</a></li>
-                </ul>
-              </li>
-              {% endcomment %}
+              
               <li>
                 <a href="#0">Canteen Food</a>
                 <ul class="lab-ul">
                   <li><a href="/product/">Food Order</a></li>
-                  {% comment %} <li><a href="product-single.html">Products Details</a></li> {% endcomment %}
+                  
                   <li><a href="/mycart/">Cart Page</a></li>
                 </ul>
               </li>
@@ -157,7 +137,7 @@
                 <a href="/">
                   <img class="img-responsive" src="{% static 'images/CanteenXpress.png' %} "
                     alt="logo" style="height: 80px;" />
-                  <span style="font-size:30px;font-weight:bold;color:#7BD239">CANTEENXPRESS</span>
+                  <span style="font-size:30px;font-weight:bold;color:red">CANTEENXPRESS</span>
                 </a>
               </div>
             </div>
@@ -206,12 +186,12 @@
           </div>
         </div>
       </div>
-      <div class="header-bottom bg-theme">
-        <div class="header-area">
-          <div class="container">
-            <div class="primary-menu">
-              <div class="main-area w-100">
-                <div class="main-menu d-flex flex-wrap align-items-center justify-content-between w-100">
+      <div class="header-bottom bg-danger">
+        <div class="header-area bg-danger">
+          <div class="container bg-danger">
+            <div class="primary-menu bg-danger">
+              <div class="main-area w-100 bg-danger">
+                <div class="main-menu d-flex flex-wrap align-items-center justify-content-between w-100 bg-danger">
                   <div class="logo">
                     <a href="/">
                       <img src="{% static 'images/CanteenXpress.png' %}"
@@ -221,48 +201,30 @@
                   <ul class="lab-ul">
                     <li class="active">
                       <a href="/">Home</a>
-                      {% comment %}
-                      <ul class="lab-ul">
-                        <li><a href="/" class="active">Home Page One</a></li>
-                        <li><a href="index-2.html">Home Page Two</a></li>
-                      </ul>
-                      {% endcomment %}
+                      
                     </li>
                     <li><a href="/about/">About</a></li>
 
-                    {% comment %}
-                    <li>
-                      <a href="#0">Blog</a>
-                      <ul class="lab-ul">
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="blog-single.html">Blog Details</a></li>
-                      </ul>
-                    </li>
-                    {% endcomment %}
+                    
                     <li>
                       <a href="#0">Canteen Food</a>
-                      <ul class="lab-ul">
+                      <ul class="lab-ul bg-danger">
                         <li><a href="/product/">Canteen Food</a></li>
-                        {% comment %} <li>
-                          <a href="product-single.html">Products Details</a>
-                        </li> {% endcomment %}
+                        
                         <li><a href="{% url 'myorder' %}">My Order</a></li>
                         <li><a href="/mycart/">Cart</a></li>
                       </ul>
                     </li>
                     <li>
                       <a href="/gallery/">Gallery</a>
-                      {% comment %} <ul class="lab-ul">
-                        <li><a href="gallery-1.html">Gallery 1</a></li>
-                        <li><a href="gallery-2.html">Gallery 2</a></li>
-                      </ul> {% endcomment %}
+                      
                     </li>
                     <li><a href="/contact/">Contact</a></li>
                     {% if request.user.is_authenticated %}
                    
                     <li>
                       <a href="#0">Settings</a>
-                      <ul class="lab-ul">
+                      <ul class="lab-ul bg-danger">
                         <li><a href="/profile/">Profile</a></li>
                         <li><a href="/change-password/">Change Password</a></li>
                         <li><a href="/signout/">SignOut</a></li>
@@ -281,7 +243,7 @@
                     {% endif %}   
                     <li>
                       <div class="cart-option">
-                        {% comment %} <i class="">Welcome, {{ request.user.username}}</i> {% endcomment %}
+                        
                         <i class="icofont-cart-alt"></i>
                         <div class="cart-content table-responsive ex3">
                            
