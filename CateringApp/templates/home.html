@@ -1,5 +1,5 @@
-{% extends 'index.html' %} 
-{% load static %} 
+{% extends 'index.html' %}
+{% load static %}
 {% block body %}
 
 <!-- Banner Section Start Here -->
@@ -7,24 +7,19 @@
   <div class="banner-slider ">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
-        <div
-          class="banner-slider-part"
-          style="
+        <div class="banner-slider-part" style="
             background-image: url({% static 'images/catering1.jpg' %});height:500px;
-          "
-        >
+          ">
           <div class="overlay"></div>
           <div class="container">
-            <div
-              class="row flex-row-reverse justify-content-center align-items-center"
-            >
+            <div class="row flex-row-reverse justify-content-center align-items-center">
               <div class="col-12">
                 <div class="banner-content">
                   <h4 class="banner-title text-white">
-                    <b class="d-lg-block" >Freshly Prepared Food </b>
+                    <b class="d-lg-block">Freshly Prepared Food </b>
                     Specialty Game Vegitables and Sweets!!!
-                  </h3>
-                  <a href="/product/" class="lab-btn bg-danger"><span>DISCOVER NOW</span></a>
+                    </h3>
+                    <a href="/product/" class="lab-btn bg-danger"><span>DISCOVER NOW</span></a>
                 </div>
               </div>
             </div>
@@ -32,22 +27,17 @@
         </div>
       </div>
       <div class="swiper-slide">
-        <div
-          class="banner-slider-part"
-          style="
+        <div class="banner-slider-part" style="
             background-image: url({% static 'images/catering2.jpg' %}); height:500px;
-          "
-        >
+          ">
           <div class="overlay"></div>
           <div class="container">
-            <div
-              class="row flex-row-reverse justify-content-center align-items-center"
-            >
+            <div class="row flex-row-reverse justify-content-center align-items-center">
               <div class="col-12">
                 <div class="banner-content">
                   <h4 class="banner-title text-white">
-                    <b class="d-lg-block" >Freshly Prepared Food </b>
-                    Specialty Game Vegitables and Sweets!!! 
+                    <b class="d-lg-block">Freshly Prepared Food </b>
+                    Specialty Game Vegitables and Sweets!!!
                   </h4>
                   <a href="/product/" class="lab-btn bg-danger"><span>DISCOVER NOW</span></a>
                 </div>
@@ -57,21 +47,16 @@
         </div>
       </div>
       <div class="swiper-slide">
-        <div
-          class="banner-slider-part"
-          style="
+        <div class="banner-slider-part" style="
             background-image: url({% static 'images/catering3.jpg' %});height:500px;
-          "
-        >
+          ">
           <div class="overlay"></div>
           <div class="container">
-            <div
-              class="row flex-row-reverse justify-content-center align-items-center"
-            >
+            <div class="row flex-row-reverse justify-content-center align-items-center">
               <div class="col-12">
                 <div class="banner-content">
                   <h4 class="banner-title text-white">
-                    <b class="d-lg-block" >Freshly Prepared Food </b>
+                    <b class="d-lg-block">Freshly Prepared Food </b>
                     Specialty Game Vegitables and Sweets!!!
                   </h4>
                   <a href="/product/" class="lab-btn bg-danger"><span>DISCOVER NOW</span></a>
@@ -93,10 +78,7 @@
     <div class="row align-items-center mb-15">
       <div class="col-lg-6 col-12">
         <div class="about-thumb">
-          <img
-            src="{% static 'images/catering4.jpg' %}"
-            alt="about-thumb"
-          />
+          <img src="{% static 'images/catering4.jpg' %}" alt="about-thumb" />
         </div>
       </div>
       <div class="col-lg-6 col-12">
@@ -106,12 +88,19 @@
               <span class="d-lg-block"> Welcome to Our Canteen</span>
             </h2>
             <p style="color:black">
-              Continually productize compelling quality for packed with Elated
-              productize compelling quality for packed with all Elated
-              Them Setting up to website and creating pages.
+              Welcome to Our Canteen Automation System! 🍽🚀</br>We’re thrilled to have you on board!
+              Our AI-powered canteen automation system is here to make
+              your dining experience faster, smarter, and hassle-free.
+              From quick ordering to seamless payments and personalized meal recommendations,
+              we've got everything covered.</br>Enjoy a smooth and efficient canteen
+              experience—no more long queues, no more waiting!
+              </br>Bon appétit! 😃🍕🥗
+            <p>Happy Dining, </br>
+              The Canteen Automation System Team</p>
+
             </p>
           </div>
-          <div class="about-content">
+          <!-- <div class="about-content">
             <ul class="lab-ul list-group" style="color:black">
               <li class="list-group-item py-1 px-0 border-none">
                 <i class="icofont-tick-boxed mr-2 color-theme"></i>We are
@@ -135,7 +124,7 @@
               </li>
             </ul>
             <a href="#" class="lab-btn mt-4 bg-danger"><span>Read More</span></a>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -166,40 +155,24 @@
                     <div class="addcart-icon ">
                       <a href="#"><i class="far fa-heart"></i></a>
                       <a href="#"><i class="fas fa-sync-alt"></i></a>
-                      <a href="" data-rel="lightcase"
-                        ><i class="fas fa-search"></i
-                      ></a>
+                      <a href="" data-rel="lightcase"><i class="fas fa-search"></i></a>
                     </div>
                     <a href="/add_cart/{{i.id}}/" class="lab-btn bg-danger d-inline-b">Add to cart</a>
                   </div>
                 </div>
-                <img
-                  src="{{i.image.url}}"
-                  class="card-img-top mb-2"
-                  style="height:250px ;widht:100%"
-                />
+                <img src="{{i.image.url}}" class="card-img-top mb-2" style="height:250px ;widht:100%" />
                 <div class="card-body">
                   <div class="rating mb-2">
-                    <span
-                      ><a href="#"><i class="far fa-star"></i></a
-                    ></span>
-                    <span
-                      ><a href="#"><i class="far fa-star"></i></a
-                    ></span>
-                    <span
-                      ><a href="#"><i class="far fa-star"></i></a
-                    ></span>
-                    <span
-                      ><a href="#"><i class="far fa-star"></i></a
-                    ></span>
-                    <span
-                      ><a href="#"><i class="far fa-star"></i></a
-                    ></span>
+                    <span><a href="#"><i class="far fa-star"></i></a></span>
+                    <span><a href="#"><i class="far fa-star"></i></a></span>
+                    <span><a href="#"><i class="far fa-star"></i></a></span>
+                    <span><a href="#"><i class="far fa-star"></i></a></span>
+                    <span><a href="#"><i class="far fa-star"></i></a></span>
                   </div>
                   <a href="#">
                     <h6 class="card-title">{{i.name}}</h6>
                   </a>
-                  
+
                 </div>
               </div>
             </div>
@@ -235,10 +208,7 @@
                 <div class="lab-inner p-4 mb-4 text-left">
                   <div class="service-top d-flex align-items-center mb-4">
                     <div class="st-thumb mr-3">
-                      <img
-                        src="{% static 'assets/images/service/01.png' %}"
-                        alt="service image"
-                      />
+                      <img src="{% static 'assets/images/service/01.png' %}" alt="service image" />
                     </div>
                     <div class="st-content mt-2">
                       <a href="#">
@@ -260,10 +230,7 @@
                 <div class="lab-inner p-4 mb-4 text-left">
                   <div class="service-top d-flex align-items-center mb-4">
                     <div class="st-thumb mr-3">
-                      <img
-                        src="{% static 'assets/images/service/02.png' %}"
-                        alt="service image"
-                      />
+                      <img src="{% static 'assets/images/service/02.png' %}" alt="service image" />
                     </div>
                     <div class="st-content mt-2">
                       <a href="#">
@@ -285,10 +252,7 @@
                 <div class="lab-inner p-4 mb-4 text-left">
                   <div class="service-top d-flex align-items-center mb-4">
                     <div class="st-thumb mr-3">
-                      <img
-                        src="{% static 'assets/images/service/03.png' %}"
-                        alt="service image"
-                      />
+                      <img src="{% static 'assets/images/service/03.png' %}" alt="service image" />
                     </div>
                     <div class="st-content mt-2">
                       <a href="#">
@@ -310,10 +274,7 @@
                 <div class="lab-inner p-4 mb-4 text-left">
                   <div class="service-top d-flex align-items-center mb-4">
                     <div class="st-thumb mr-3">
-                      <img
-                        src="{% static 'assets/images/service/04.png' %}"
-                        alt="service image"
-                      />
+                      <img src="{% static 'assets/images/service/04.png' %}" alt="service image" />
                     </div>
                     <div class="st-content mt-2">
                       <a href="#">
@@ -335,10 +296,7 @@
                 <div class="lab-inner p-4 mb-4 text-left">
                   <div class="service-top d-flex align-items-center mb-4">
                     <div class="st-thumb mr-3">
-                      <img
-                        src="{% static 'assets/images/service/05.png' %}"
-                        alt="service image"
-                      />
+                      <img src="{% static 'assets/images/service/05.png' %}" alt="service image" />
                     </div>
                     <div class="st-content mt-2">
                       <a href="#">
@@ -360,10 +318,7 @@
                 <div class="lab-inner p-4 mb-4 text-left">
                   <div class="service-top d-flex align-items-center mb-4">
                     <div class="st-thumb mr-3">
-                      <img
-                        src="{% static 'assets/images/service/06.png' %}"
-                        alt="service image"
-                      />
+                      <img src="{% static 'assets/images/service/06.png' %}" alt="service image" />
                     </div>
                     <div class="st-content mt-2">
                       <a href="#">
@@ -404,85 +359,37 @@
       <div class="col-12">
         <div class="gallery-content">
           <div class="gallery-grid text-center">
-            <a
-              href="{% static 'images/catering1.jpg' %}"
-              data-rel="lightcase:myCollection:slideshow"
-              class="grid-image"
-            >
-              <img
-                src="{% static 'images/catering1.jpg' %}"
-                alt="gallery-image" style="height:200px"
-              />
+            <a href="{% static 'images/catering1.jpg' %}" data-rel="lightcase:myCollection:slideshow"
+              class="grid-image">
+              <img src="{% static 'images/catering1.jpg' %}" alt="gallery-image" style="height:200px" />
             </a>
-            <a
-              href="{% static 'images/catering2.jpg' %}"
-              data-rel="lightcase:myCollection:slideshow"
-              class="grid-image"
-            >
-              <img
-                src="{% static 'images/catering2.jpg' %}"
-                alt="gallery-image" style="height:200px"
-              />
+            <a href="{% static 'images/catering2.jpg' %}" data-rel="lightcase:myCollection:slideshow"
+              class="grid-image">
+              <img src="{% static 'images/catering2.jpg' %}" alt="gallery-image" style="height:200px" />
             </a>
-            <a
-              href="{% static 'images/catering3.jpg' %}"
-              data-rel="lightcase:myCollection:slideshow"
-              class="grid-image"
-            >
-              <img
-                src="{% static 'images/catering3.jpg' %}"
-                alt="gallery-image" style="height:200px"
-              />
+            <a href="{% static 'images/catering3.jpg' %}" data-rel="lightcase:myCollection:slideshow"
+              class="grid-image">
+              <img src="{% static 'images/catering3.jpg' %}" alt="gallery-image" style="height:200px" />
             </a>
-            <a
-              href="{% static 'images/catering4.jpg' %}"
-              data-rel="lightcase:myCollection:slideshow"
-              class="grid-image"
-            >
-              <img
-                src="{% static 'images/catering4.jpg' %}"
-                alt="gallery-image" style="height:200px"
-              />
+            <a href="{% static 'images/catering4.jpg' %}" data-rel="lightcase:myCollection:slideshow"
+              class="grid-image">
+              <img src="{% static 'images/catering4.jpg' %}" alt="gallery-image" style="height:200px" />
             </a>
-            <a
-              href="{% static 'images/catering5.jpg' %}"
-              data-rel="lightcase:myCollection:slideshow"
-              class="grid-image"
-            >
-              <img
-                src="{% static 'images/catering5.jpg' %}"
-                alt="gallery-image" style="height:200px"
-              />
+            <a href="{% static 'images/catering5.jpg' %}" data-rel="lightcase:myCollection:slideshow"
+              class="grid-image">
+              <img src="{% static 'images/catering5.jpg' %}" alt="gallery-image" style="height:200px" />
             </a>
-            <a
-              href="{% static 'images/catering6.jpeg' %}"
-              data-rel="lightcase:myCollection:slideshow"
-              class="grid-image"
-            >
-              <img
-                src="{% static 'images/catering6.jpeg' %}"
-                alt="gallery-image" style="height:200px"
-              />
+            <a href="{% static 'images/catering6.jpeg' %}" data-rel="lightcase:myCollection:slideshow"
+              class="grid-image">
+              <img src="{% static 'images/catering6.jpeg' %}" alt="gallery-image" style="height:200px" />
             </a>
-            <a
-              href="{% static 'images/catering7.jpg' %}"
-              data-rel="lightcase:myCollection:slideshow"
-              class="grid-image"
-            >
-              <img
-                src="{% static 'images/catering7.jpg' %}"
-                alt="gallery-image" style="height:200px"
-              />
+            <a href="{% static 'images/catering7.jpg' %}" data-rel="lightcase:myCollection:slideshow"
+              class="grid-image">
+              <img src="{% static 'images/catering7.jpg' %}" alt="gallery-image" style="height:200px" />
             </a>
-            <a
-              href="{% static 'images/catering8.jpg' %}"
-              data-rel="lightcase:myCollection:slideshow"
-              class="grid-image"
-            >
-              <img
-                src="{% static 'images/catering8.jpg' %}"
-                alt="gallery-image" style="height:200px"
-              />
+            <a href="{% static 'images/catering8.jpg' %}" data-rel="lightcase:myCollection:slideshow"
+              class="grid-image">
+              <img src="{% static 'images/catering8.jpg' %}" alt="gallery-image" style="height:200px" />
             </a>
           </div>
           <div class="gallery-btn text-center mt-5">
@@ -513,128 +420,72 @@
           <div class="row justify-content-center">
             <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
               <div class="card mb-4 text-center border-none">
-                <img
-                  src="{% static 'images/team3.jpg' %}"
-                  class="card-img-top"
-                  alt="product" style="height:300px"
-                />
+                <img src="{% static 'images/team3.jpg' %}" class="card-img-top" alt="product" style="height:300px" />
                 <div class="card-body">
                   <a href="#">
                     <h6 class="card-title mb-0">Sagar Jedhe</h6>
                   </a>
                   <p class="card-text mb-2" style="color:black">Manager</p>
                   <div class="social-share">
-                    <a href="#" class="m-1 twitter"
-                      ><i class="icofont-twitter"></i
-                    ></a>
-                    <a href="#" class="m-1 behance"
-                      ><i class="icofont-behance"></i
-                    ></a>
-                    <a href="#" class="m-1 instagram"
-                      ><i class="icofont-instagram"></i
-                    ></a>
-                    <a href="#" class="m-1 vimeo"
-                      ><i class="icofont-vimeo"></i
-                    ></a>
-                    <a href="#" class="m-1 linkedin"
-                      ><i class="icofont-linkedin"></i
-                    ></a>
+                    <a href="#" class="m-1 twitter"><i class="icofont-twitter"></i></a>
+                    <a href="#" class="m-1 behance"><i class="icofont-behance"></i></a>
+                    <a href="#" class="m-1 instagram"><i class="icofont-instagram"></i></a>
+                    <a href="#" class="m-1 vimeo"><i class="icofont-vimeo"></i></a>
+                    <a href="#" class="m-1 linkedin"><i class="icofont-linkedin"></i></a>
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
               <div class="card mb-4 text-center border-none">
-                <img
-                  src="{% static 'images/team2.gif' %}"
-                  class="card-img-top"
-                  alt="product" style="height:300px"
-                />
+                <img src="{% static 'images/team2.gif' %}" class="card-img-top" alt="product" style="height:300px" />
                 <div class="card-body">
                   <a href="#">
                     <h6 class="card-title mb-0">Siddhi Daphal</h6>
                   </a>
                   <p class="card-text mb-2" style="color:black">Founder & Ceo</p>
                   <div class="social-share">
-                    <a href="#" class="m-1 twitter"
-                      ><i class="icofont-twitter"></i
-                    ></a>
-                    <a href="#" class="m-1 behance"
-                      ><i class="icofont-behance"></i
-                    ></a>
-                    <a href="#" class="m-1 instagram"
-                      ><i class="icofont-instagram"></i
-                    ></a>
-                    <a href="#" class="m-1 vimeo"
-                      ><i class="icofont-vimeo"></i
-                    ></a>
-                    <a href="#" class="m-1 linkedin"
-                      ><i class="icofont-linkedin"></i
-                    ></a>
+                    <a href="#" class="m-1 twitter"><i class="icofont-twitter"></i></a>
+                    <a href="#" class="m-1 behance"><i class="icofont-behance"></i></a>
+                    <a href="#" class="m-1 instagram"><i class="icofont-instagram"></i></a>
+                    <a href="#" class="m-1 vimeo"><i class="icofont-vimeo"></i></a>
+                    <a href="#" class="m-1 linkedin"><i class="icofont-linkedin"></i></a>
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
               <div class="card mb-4 text-center border-none">
-                <img
-                  src="{% static 'images/team3.jpg' %}"
-                  class="card-img-top"
-                  alt="product" style="height:300px"
-                />
+                <img src="{% static 'images/team3.jpg' %}" class="card-img-top" alt="product" style="height:300px" />
                 <div class="card-body">
                   <a href="#">
                     <h6 class="card-title mb-0">Chaitanya Mehetre</h6>
                   </a>
                   <p class="card-text mb-2" style="color:black">Developer</p>
                   <div class="social-share">
-                    <a href="#" class="m-1 twitter"
-                      ><i class="icofont-twitter"></i
-                    ></a>
-                    <a href="#" class="m-1 behance"
-                      ><i class="icofont-behance"></i
-                    ></a>
-                    <a href="#" class="m-1 instagram"
-                      ><i class="icofont-instagram"></i
-                    ></a>
-                    <a href="#" class="m-1 vimeo"
-                      ><i class="icofont-vimeo"></i
-                    ></a>
-                    <a href="#" class="m-1 linkedin"
-                      ><i class="icofont-linkedin"></i
-                    ></a>
+                    <a href="#" class="m-1 twitter"><i class="icofont-twitter"></i></a>
+                    <a href="#" class="m-1 behance"><i class="icofont-behance"></i></a>
+                    <a href="#" class="m-1 instagram"><i class="icofont-instagram"></i></a>
+                    <a href="#" class="m-1 vimeo"><i class="icofont-vimeo"></i></a>
+                    <a href="#" class="m-1 linkedin"><i class="icofont-linkedin"></i></a>
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
               <div class="card mb-4 text-center border-none">
-                <img
-                  src="{% static 'images/team2.gif' %}"
-                  class="card-img-top"
-                  alt="product" style="height:300px"
-                />
+                <img src="{% static 'images/team2.gif' %}" class="card-img-top" alt="product" style="height:300px" />
                 <div class="card-body">
                   <a href="#">
                     <h6 class="card-title mb-0">Utkarsha Pawar</h6>
                   </a>
                   <p class="card-text mb-2" style="color:black">Marketer</p>
                   <div class="social-share">
-                    <a href="#" class="m-1 twitter"
-                      ><i class="icofont-twitter"></i
-                    ></a>
-                    <a href="#" class="m-1 behance"
-                      ><i class="icofont-behance"></i
-                    ></a>
-                    <a href="#" class="m-1 instagram"
-                      ><i class="icofont-instagram"></i
-                    ></a>
-                    <a href="#" class="m-1 vimeo"
-                      ><i class="icofont-vimeo"></i
-                    ></a>
-                    <a href="#" class="m-1 linkedin"
-                      ><i class="icofont-linkedin"></i
-                    ></a>
+                    <a href="#" class="m-1 twitter"><i class="icofont-twitter"></i></a>
+                    <a href="#" class="m-1 behance"><i class="icofont-behance"></i></a>
+                    <a href="#" class="m-1 instagram"><i class="icofont-instagram"></i></a>
+                    <a href="#" class="m-1 vimeo"><i class="icofont-vimeo"></i></a>
+                    <a href="#" class="m-1 linkedin"><i class="icofont-linkedin"></i></a>
                   </div>
                 </div>
               </div>
@@ -658,10 +509,7 @@
         <div class="lab-item">
           <div class="lab-inner">
             <div class="lab-thumb">
-              <img
-                src="{% static 'assets/images/feature/01.png' %}"
-                alt="Feature Image"
-              />
+              <img src="{% static 'assets/images/feature/01.png' %}" alt="Feature Image" />
             </div>
             <div class="lab-content">
               <h6 style="color:black">Foods Range</h6>
@@ -677,10 +525,7 @@
         <div class="lab-item">
           <div class="lab-inner">
             <div class="lab-thumb">
-              <img
-                src="{% static 'assets/images/feature/02.png' %}"
-                alt="Feature image"
-              />
+              <img src="{% static 'assets/images/feature/02.png' %}" alt="Feature image" />
             </div>
             <div class="lab-content">
               <h6 style="color:black">Quality Matters</h6>
@@ -696,10 +541,7 @@
         <div class="lab-item">
           <div class="lab-inner">
             <div class="lab-thumb">
-              <img
-                src="{% static 'assets/images/feature/03.png' %}"
-                alt="Feature image"
-              />
+              <img src="{% static 'assets/images/feature/03.png' %}" alt="Feature image" />
             </div>
             <div class="lab-content">
               <h6 style="color:black">Free Shipping</h6>
@@ -715,10 +557,7 @@
         <div class="lab-item">
           <div class="lab-inner">
             <div class="lab-thumb">
-              <img
-                src="{% static 'assets/images/feature/04.png' %}"
-                alt="Feature image"
-              />
+              <img src="{% static 'assets/images/feature/04.png' %}" alt="Feature image" />
             </div>
             <div class="lab-content">
               <h6 style="color:black">Customer Satisfaction</h6>
