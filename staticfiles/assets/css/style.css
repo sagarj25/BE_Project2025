@@ -6213,7 +6213,8 @@ img {
   transition: 0.5s;
 }
 .gallery-grid-item .grid-items img:hover {
-  transform: scale(1.1);
+  transform: scale(1.01);
+  border-radius: 10px;
   cursor: pointer;
 }
 .gallery-grid-item .grid-items:nth-child(2) {
