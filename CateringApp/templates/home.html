@@ -149,9 +149,10 @@
                 <div class="addcart-overlay">
                   <div class="addcart-content">
                     <div class="addcart-icon ">
-                      <a href="#"><i class="far fa-heart"></i></a>
-                      <a href="#"><i class="fas fa-sync-alt"></i></a>
-                      <a href="" data-rel="lightcase"><i class="fas fa-search"></i></a>
+                      <a href="{{i.image.url}}" data-rel="lightcase"><i
+                        class="icofont-eye"></i></a>
+                <a href="/product-detail/{{i.id}}/"><i class="icofont-info"></i></a>
+                <a href="/add_cart/{{i.id}}/"><i class="icofont-cart-alt"></i></a>
                     </div>
                     <a href="/add_cart/{{i.id}}/" class="lab-btn bg-danger d-inline-b">Add to cart</a>
                   </div>
