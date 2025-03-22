@@ -7,9 +7,7 @@
   <div class="banner-slider ">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
-        <div class="banner-slider-part" style="
-            background-image: url({% static 'images/catering1.jpg' %});height:500px;
-          ">
+        <div class="banner-slider-part" style="background-image: url({% static 'images/catering1.jpg' %});height:500px;">
           <div class="overlay"></div>
           <div class="container">
             <div class="row flex-row-reverse justify-content-center align-items-center">
@@ -27,9 +25,7 @@
         </div>
       </div>
       <div class="swiper-slide">
-        <div class="banner-slider-part" style="
-            background-image: url({% static 'images/catering2.jpg' %}); height:500px;
-          ">
+        <div class="banner-slider-part" style="background-image: url({% static 'images/catering2.jpg' %}); height:500px;">
           <div class="overlay"></div>
           <div class="container">
             <div class="row flex-row-reverse justify-content-center align-items-center">
@@ -160,15 +156,15 @@
                     <a href="/add_cart/{{i.id}}/" class="lab-btn bg-danger d-inline-b">Add to cart</a>
                   </div>
                 </div>
-                <img src="{{i.image.url}}" class="card-img-top mb-2" style="height:250px ;widht:100%" />
+                <img src="{{i.image.url}}" class="card-img-top mb-2" style="height:250px ;width:100%" />
                 <div class="card-body">
-                  <div class="rating mb-2">
+                  <!-- <div class="rating mb-2 bg-dark">
                     <span><a href="#"><i class="far fa-star"></i></a></span>
                     <span><a href="#"><i class="far fa-star"></i></a></span>
                     <span><a href="#"><i class="far fa-star"></i></a></span>
                     <span><a href="#"><i class="far fa-star"></i></a></span>
                     <span><a href="#"><i class="far fa-star"></i></a></span>
-                  </div>
+                  </div> -->
                   <a href="#">
                     <h6 class="card-title">{{i.name}}</h6>
                   </a>

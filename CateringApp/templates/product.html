@@ -19,28 +19,28 @@
     }
 </style>
 
-<h4 class="ph-title bg-primary py-2 float-center text-white" align="center">Canteen Foods</h4>
+<h4 class="ph-title bg-secondary mt-2 rounded py-2 float-center text-white" align="center">Canteen Foods</h4>
 
 
 <!-- shop page Section Start Here -->
 <div class="shop-page">
-    <div class="container-fluid" style="width:90%">
+    <div class="container-fluid rounded" style="width:90%">
         <div class="section-wrapper">
-            <div class="row justify-content-center mb-4">
-                <div class="col-lg-3 col-md-7 col-12">
+            <div class="row justify-content-center mb-4 rounded">
+                <div class="col-lg-3 col-md-7 col-12 rounded">
                     <aside>
-                        <div class="widget widget-search bg-secondary px-3">
+                        <div class="widget widget-search bg-secondary rounded px-3">
                             <div class="widget-header">
                                 <h6>Search keywords</h6>
                             </div>
                             <form action="" class="search-wrapper">
-                                <input type="text" name="search" placeholder="Your Search..." value="{{request.GET.search}}">
-                                <button type="submit"><i class="icofont-search-2"></i></button>
+                                <input type="text" name="search" placeholder="Your Search..." class="rounded" value="{{request.GET.search}}">
+                                <button type="submit" class="rounded"><i class="icofont-search-2"></i></button>
                             </form>
                         </div>
 
-                        <div class="widget widget-category  px-3">
-                            <div class="widget-header">
+                        <div class="widget widget-category bg-secondary rounded  px-3">
+                            <div class="widget-header ">
                                 <h6>Canteen Categories</h6>
                             </div>
                             <div class="widget-wrapper">
@@ -62,7 +62,7 @@
                             </div>
                         </div>
 
-                        <div class="widget widget-post bg-primary px-3">
+                        <div class="widget widget-post bg-secondary rounded px-3">
                               
                             <div class="widget-header">
                                 <h6>Latests Products</h6>
@@ -156,9 +156,9 @@
                 </div>
                 
                 <div class="col-lg-9 col-12">
-                    {% comment %} <h4 class="ph-title bg-primary py-2 float-center text-white" align="center">Canteen Foods</h4> {% endcomment %}
+                    {% comment %} <h4 class="ph-title bg-secondary py-2 float-center text-white" align="center">Canteen Foods</h4> {% endcomment %}
                     <article>
-                        <div class="shop-title d-flex flex-wrap justify-content-between bg-secondary">
+                        <div class="shop-title d-flex flex-wrap justify-content-between rounded bg-secondary">
                             <p>Showing {{ page_obj.start_index }} - {{ page_obj.end_index }} of {{product.count}} Results</p>
                             <div class="product-view-mode">
                                 <a class="active" data-target="grids"><i class="icofont-ghost"></i></a>
@@ -169,9 +169,9 @@
                         <div class="shop-product-wrap grids row justify-content-center">
                             {% for i in page_obj %}
                             <div class="col-lg-4 col-md-6 col-12">
-                                <div class="product-item">
-                                    <div class="product-thumb">
-                                        <img src="{{i.image.url}}" alt="shope" style="width:100%;height:200px">
+                                <div class="product-item rounded">
+                                    <div class="product-thumb rounded">
+                                        <img src="{{i.image.url}}" alt="shope" style="width:100%;height:180px">
                                         <div class="product-action-link">
                                             <a href="{{i.image.url}}" data-rel="lightcase"><i
                                                     class="icofont-eye"></i></a>
@@ -220,7 +220,7 @@
                             {% endfor %}
                         </div>
 
-                        {% comment %} <div class="pagination">
+                        {% comment %} <div class="pagination bg-primary">
                             <span class="step-links">
                                 {% if page_obj.has_previous %}
                                     <a href="?page=1">&laquo; first</a>
@@ -269,14 +269,14 @@
                 </div> {% endcomment %}
 
                 <div class="col-lg-12">
-                    <h4 class="ph-title bg-primary py-2 float-center text-white" align="center">Recommended Foods</h4>
+                    <h4 class="ph-title bg-secondary rounded py-2 float-center text-white" align="center">Recommended Foods</h4>
                     <article>
-                        <div class="shop-product-wrap grids row justify-content-center">
+                        <div class="shop-product-wrap grids row mt-2 p-3 justify-content-center">
                             {% for i in request|recommendationProduct %}
                                 <div class="col-lg-2 col-md-4 col-6">
-                                    <div class="product-item">
-                                        <div class="product-thumb">
-                                            <img src="{{i|productimage}}" alt="shope" style="width:100%;height:200px">
+                                    <div class="product-item rounded">
+                                        <div class="product-thumb rounded">
+                                            <img src="{{i|productimage}}" alt="shope" style="width:100%;height:150px">
                                             <div class="product-action-link">
                                                 <a href="{{i|productimage}}" data-rel="lightcase"><i
                                                         class="icofont-eye"></i></a>
