@@ -52,7 +52,7 @@ class ProductImage(models.Model):
         return self.product.name
     
 class ProductHistory(models.Model):
-    productid = models.CharField(max_length=100, null=True, blank=True)
+    productid = models.ForeignKey(Product_Master, on_delete=models.CASCADE, null=True, blank=True)
     productcategoryid = models.CharField(max_length=100, null=True, blank=True)
     user = models.CharField(max_length=100, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True, blank=True)

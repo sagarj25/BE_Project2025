@@ -1,7 +1,5 @@
 import datetime
-import json
 import random
-from webbrowser import get
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 from CateringApp.forms import StaffForm
@@ -12,19 +10,15 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.core.paginator import Paginator
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt  # Only needed once
 import calendar
-from django.db.models import Sum, Count
+from django.db.models import Sum, Count  # Useful for aggregating and counting orders
 import os
-import matplotlib.pyplot as plt
 import pygal
 from django.db.models.functions import TruncMonth
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-import json
-from CateringApp.models import Product_Master, Order  # Import your models
+from CateringApp.models import Product_Master, Order  # Models used in views
+
 
 # Create your views here.
 def changeinInt(li):
@@ -262,17 +256,66 @@ def signout(request):
     return redirect('home')
    
  
+from .models import UserProfile, Product_Master, Order, Product_Category, Review
+import datetime
+
+from django.db.models import Count
+import datetime
+
 def adminhome(request):
-    tcust = UserProfile.objects.filter()
-    tprod = Product_Master.objects.filter()
+    # Existing fetches
+    tcust = UserProfile.objects.all()
+    tprod = Product_Master.objects.all()
     tdbook = Order.objects.filter(created__date=datetime.date.today())
-    tbook = Order.objects.filter()
-    tprodcat = Product_Category.objects.filter()
-    trev = Review.objects.filter()
+    tbook = Order.objects.all()
+    tprodcat = Product_Category.objects.all()
+    trev = Review.objects.all()
     tdel = Order.objects.filter(status=5)
     tact = UserProfile.objects.filter(status=1)
+
+    
+    # --------- NEW LOGIC: Fetch Popular Products -----------
+
+    product_count = {}  # Dictionary to count product occurrences
+
+    for order in Order.objects.all():
+        if order.productid:
+            try:
+                product_ids = order.productid.strip("[]").split(",")
+                for pid in product_ids:
+                    pid = pid.strip()
+                    if pid.isdigit():
+                        pid = int(pid)
+                        if pid in product_count:
+                            product_count[pid] += 1
+                        else:
+                            product_count[pid] = 1
+            except Exception as e:
+                print("Error parsing order product IDs:", e)
+
+    # Sort products by sales count
+    sorted_products = sorted(product_count.items(), key=lambda x: x[1], reverse=True)
+
+    # Fetch top 5 popular products
+    top_product_ids = [prod[0] for prod in sorted_products[:5]]
+
+    popular_products = []
+    for pid in top_product_ids:
+        try:
+            product = Product_Master.objects.get(id=pid)
+            popular_products.append({
+                'product': product,
+                'sales_count': product_count[pid],
+            })
+        except Product_Master.DoesNotExist:
+            pass  # Skip missing products
+
+    # --------- END OF NEW LOGIC -----------
+
+    # Graphs
     graph_image_path = monthly_sales_bar_graph(request)
     graph_image_pie_path = monthly_sales_pie_chart(request)
+
     return render(request, 'adminhome.html', locals())
 
 

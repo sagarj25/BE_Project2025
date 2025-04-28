@@ -1,130 +1,107 @@
 {% extends 'adminindex.html' %}
 {% load static %}
-
 {% block body %}
 <style>
   .card a {
     color: #fff;
-    text-decoration: none;
+    text-decoration: none; /* Fix the underline issue */
   }
 
   .card a:hover {
     color: yellow;
     text-decoration: none;
   }
-  .popular-products {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-}
 
-.product-card {
-    background: #ffffff;
-    border-radius: 10px;
+  /* Additional Styles for Cards */
+  .card {
+    cursor: pointer; /* Makes the entire card clickable */
+    transition: all 0.3s ease;
+  }
+
+  .card:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
+  }
+
+  /* Responsive Layout */
+  .content-wrapper {
     padding: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: center;
-}
+  }
 
-.product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
+  .grid-margin {
+    margin-bottom: 20px;
+  }
 
-.product-card h4 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: #333;
-}
+  .card-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-.product-card p {
-    font-size: 16px;
-    color: #666;
-}
+  .card p {
+    margin: 0;
+  }
+
+  .fs-30 {
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  /* For Bar and Pie Chart */
+  .row canvas {
+    width: 100%;
+    height: 300px;
+  }
 </style>
 
 <div class="content-wrapper">
+  <!-- Dashboard Content -->
   <div class="row">
-    <div class="col-md-12 grid-margin">
-      <div class="row">
-        <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-          <h3 class="font-weight-bold">Welcome {{request.user.username}}</h3>
-          <h6 class="font-weight-normal mb-0">
-            All systems are running smoothly! You have
-            <span class="text-primary"></span>
-          </h6>
-        </div>
-        <div class="col-12 col-xl-4">
-          <div class="justify-content-end d-flex">
-            <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-              <button
-                class="btn btn-sm btn-light bg-white dropdown-toggle"
-                type="button"
-                id="dropdownMenuDate2"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="true"
-              >
-                <i class="mdi mdi-calendar"></i> Today: {% now "jS F Y" %}
-              </button>
-              <div
-                class="dropdown-menu dropdown-menu-right"
-                aria-labelledby="dropdownMenuDate2"
-              >
-                <a class="dropdown-item" href="#">January - March</a>
-                <a class="dropdown-item" href="#">March - June</a>
-                <a class="dropdown-item" href="#">June - August</a>
-                <a class="dropdown-item" href="#">August - November</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
+    <!-- User Stats Cards -->
     <div class="col-md-6 grid-margin transparent">
       <div class="row">
+        <!-- Total Registered User -->
         <div class="col-md-6 mb-4 stretch-card transparent">
           <div class="card card-tale">
             <a href="/registered-user/">
               <div class="card-body">
                 <p class="mb-4">Total Registered User</p>
-                <p class="fs-30 mb-2">{{tcust.count}}</p>
+                <p class="fs-30 mb-2">{{ tcust.count }}</p>
               </div>
             </a>
           </div>
         </div>
+        <!-- Total Food -->
         <div class="col-md-6 mb-4 stretch-card transparent">
           <div class="card card-dark-blue">
             <a href="/vwproduct/">
               <div class="card-body">
                 <p class="mb-4">Total Food</p>
-                <p class="fs-30 mb-2">{{tprod.count}}</p>
+                <p class="fs-30 mb-2">{{ tprod.count }}</p>
               </div>
             </a>
           </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
+        <!-- Total Food Category -->
+        <div class="col-md-6 mb-4 stretch-card transparent">
           <div class="card card-light-blue">
             <a href="/vwproduct-cateogy/">
               <div class="card-body">
                 <p class="mb-4">Total Food Category</p>
-                <p class="fs-30 mb-2">{{tprodcat.count}}</p>
+                <p class="fs-30 mb-2">{{ tprodcat.count }}</p>
               </div>
             </a>
           </div>
         </div>
+        <!-- Total Reviews -->
         <div class="col-md-6 stretch-card transparent">
           <div class="card card-light-danger">
             <a href="/all-review/">
               <div class="card-body">
                 <p class="mb-4">Total Reviews</p>
-                <p class="fs-30 mb-2">{{trev.count}}</p>
+                <p class="fs-30 mb-2">{{ trev.count }}</p>
               </div>
             </a>
           </div>
@@ -132,46 +109,51 @@
       </div>
     </div>
 
+    <!-- Order Stats Cards -->
     <div class="col-md-6 grid-margin transparent">
       <div class="row">
+        <!-- Today's Bookings -->
         <div class="col-md-6 mb-4 stretch-card transparent">
           <div class="card card-tale">
             <a href="/orderlist/?status=today">
               <div class="card-body">
                 <p class="mb-4">Today’s Bookings</p>
-                <p class="fs-30 mb-2">{{tdbook.count}}</p>
+                <p class="fs-30 mb-2">{{ tdbook.count }}</p>
               </div>
             </a>
           </div>
         </div>
+        <!-- Total Order -->
         <div class="col-md-6 mb-4 stretch-card transparent">
           <div class="card card-dark-blue">
             <a href="/orderlist/?order=All">
               <div class="card-body">
                 <p class="mb-4">Total Order</p>
-                <p class="fs-30 mb-2">{{tbook.count}}</p>
+                <p class="fs-30 mb-2">{{ tbook.count }}</p>
               </div>
             </a>
           </div>
         </div>
       </div>
       <div class="row">
+        <!-- Total Completed Order -->
         <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
           <div class="card card-light-blue">
             <a href="/orderlist/?status=5">
               <div class="card-body">
                 <p class="mb-4">Total Completed Order</p>
-                <p class="fs-30 mb-2">{{tdel.count}}</p>
+                <p class="fs-30 mb-2">{{ tdel.count }}</p>
               </div>
             </a>
           </div>
         </div>
+        <!-- Total Active Customer -->
         <div class="col-md-6 stretch-card transparent">
           <div class="card card-light-danger">
             <a href="/registered-user/?status=1">
               <div class="card-body">
                 <p class="mb-4">Total Active Customer</p>
-                <p class="fs-30 mb-2">{{tact.count}}</p>
+                <p class="fs-30 mb-2">{{ tact.count }}</p>
               </div>
             </a>
           </div>
@@ -180,7 +162,7 @@
     </div>
   </div>
 
-  <!-- Bar and Pie Chart -->
+  <!-- Charts -->
   <div class="row">
     <div class="col-6 p-2">
       <h6>Monthly Sales for Bar Graph</h6>
@@ -191,39 +173,21 @@
       <canvas id="pieChart"></canvas>
     </div>
   </div>
-
- 
-
-  <h3 style="font-size: 24px; font-weight: bold; margin-bottom: 20px;">🔥 Popular Products</h3>
-
-<div class="popular-products">
-    {% for item in popular_products %}
-        <div class="product-card">
-            <h4>{{ item.product.name }}</h4>
-            <p>Sold <strong>{{ item.sales_count }}</strong> times</p>
-        </div>
-    {% empty %}
-        <p>No popular products found.</p>
-    {% endfor %}
-</div>
-
-
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-  // Function to retrieve the chart data from the server
+  // Function to fetch chart data
   function fetchChartData(url, chartId, chartType) {
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        // Create the chart using Chart.js
-        var ctx = document.getElementById(chartId).getContext('2d');
-        new Chart(ctx, {
-          type: chartType,
-          data: data
-        });
-      });
+      fetch(url)
+          .then(response => response.json())
+          .then(data => {
+              var ctx = document.getElementById(chartId).getContext('2d');
+              new Chart(ctx, {
+                  type: chartType,
+                  data: data
+              });
+          });
   }
 
   // Fetch and render the bar chart
