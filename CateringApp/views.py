@@ -18,6 +18,7 @@ import pygal
 from django.db.models.functions import TruncMonth
 from django.views.decorators.csrf import csrf_exempt
 from CateringApp.models import Product_Master, Order  # Models used in views
+import json
 
 
 # Create your views here.

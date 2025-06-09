@@ -1,0 +1,336 @@
+{% extends 'index.html' %} {% load static %} Add commentMore actions
+{% load custom_tags %} 
+{% block body %}
+
+<style>
+    .paginations li a{
+        color:white!important;
+        background-color:#FF6F00!important;
+    }
+
+    .paginations li a:hover{
+        color:white!important;
+        background-color:#7BD239!important;
+    }
+
+    .scrollbar {
+        max-height: 200px; /* Adjust the height as per your requirement */
+        overflow-y: auto;
+    }
+</style>
+
+<<<<<<< HEAD
+<h4 class="ph-title bg-secondary mt-2 rounded py-2 float-center text-white" align="center">Canteen Foods</h4>
+=======
+
+
+<!-- shop page Section Start Here -->
+<div class="shop-page">
+    <div class="container-fluid rounded" style="width:90%">
+        <div class="section-wrapper">
+            <div class="row justify-content-center mb-4 rounded">
+                <div class="col-lg-3 col-md-7 col-12 rounded">
+                    <aside>
+                        <div class="widget widget-search bg-secondary rounded px-3">
+                            <div class="widget-header">
+                                <h6>Search keywords</h6>
+                            </div>
+                            <form action="" class="search-wrapper">
+                                <input type="text" name="search" placeholder="Your Search..." class="rounded" value="{{request.GET.search}}">
+                                <button type="submit" class="rounded"><i class="icofont-search-2"></i></button>
+                            </form>
+                        </div>
+
+                        <div class="widget widget-category bg-secondary rounded  px-3">
+                            <div class="widget-header ">
+                                <h6>Canteen Categories</h6>
+                            </div>
+                            <div class="widget-wrapper">
+                                <ul class="lab-ul shop-menu scrollbar">
+                                    <li></li>
+                                    {% for i in category %}
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <img src="{{i.image.url}}" style="width:100%;height:50px">
+                                                </div>
+                                                <div class="col-8">
+                                                    <a href="/product/?category={{i.id}}">{{i.name}}</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="widget widget-post bg-secondary rounded px-3">
+                              
+                            <div class="widget-header">
+                                <h6>Latests Products</h6>
+                            </div>
+                            {% for i in latestproduct %}
+                                <ul class="lab-ul widget-wrapper">
+                                    <li class="d-flex flex-wrap justify-content-between">
+                                        <div class="post-thumb">
+                                            {% comment %} <a href="blog-single.html"><img src="assets/images/product/01.jpg" alt="product"></a> {% endcomment %}
+                                            <img src="{{i.image.url}}" alt="shope" style="width:75%;height:75px">
+
+                                        </div>
+                                        <div class="post-content">
+                                            <a href="#">
+                                            {% comment %} <a href="blog-single.html"> {% endcomment %}
+                                                <h6>{{i.name}}</h6>                                               
+                                                {% comment %} <h6>Organic Orange</h6> {% endcomment %}
+                                            </a>
+                                            <div class="rating">
+                                                <span><a href="#"><i class="far fa-star"></i></a></span>
+                                                <span><a href="#"><i class="far fa-star"></i></a></span>
+                                                <span><a href="#"><i class="far fa-star"></i></a></span>
+                                                <span><a href="#"><i class="far fa-star"></i></a></span>
+                                                <span><a href="#"><i class="far fa-star"></i></a></span>
+                                            </div>
+                                            <h6> {{i.price}} </h6>
+                                        </div>
+                                    </li>
+                                    {% comment %} <li class="d-flex flex-wrap justify-content-between">
+                                        <div class="post-thumb">
+                                            <a href="blog-single.html"><img src="assets/images/product/02.jpg"
+                                                    alt="product"></a>
+                                        </div>
+                                        <div class="post-content">
+                                            <a href="blog-single.html">
+                                                <h6>Organic Orange</h6>
+                                            </a>
+                                            <div class="rating">
+                                                <span><a href="#"><i class="far fa-star"></i></a></span>
+                                                <span><a href="#"><i class="far fa-star"></i></a></span>
+                                                <span><a href="#"><i class="far fa-star"></i></a></span>
+                                                <span><a href="#"><i class="far fa-star"></i></a></span>
+                                                <span><a href="#"><i class="far fa-star"></i></a></span>
+                                            </div>
+                                            <h6>$59.9</h6>
+                                        </div>
+                                    </li>
+                                    <li class="d-flex flex-wrap justify-content-between">
+                                        <div class="post-thumb">
+                                            <a href="blog-single.html"><img src="assets/images/product/03.jpg"
+                                                    alt="product"></a>
+                                        </div>
+                                        <div class="post-content">
+                                            <a href="blog-single.html">
+                                                <h6>Organic Orange</h6>
+                                            </a>
+                                            <div class="rating">
+                                                <span><a href="#"><i class="far fa-star"></i></a></span>
+                                                <span><a href="#"><i class="far fa-star"></i></a></span>
+                                                <span><a href="#"><i class="far fa-star"></i></a></span>
+                                                <span><a href="#"><i class="far fa-star"></i></a></span>
+                                                <span><a href="#"><i class="far fa-star"></i></a></span>
+                                            </div>
+                                            <h6>$59.9</h6>
+                                        </div>
+                                    </li>
+                                    <li class="d-flex flex-wrap justify-content-between">
+                                        <div class="post-thumb">
+                                            <a href="blog-single.html"><img src="assets/images/product/04.jpg"
+                                                    alt="product"></a>
+                                        </div>
+                                        <div class="post-content">
+                                            <a href="blog-single.html">
+                                                <h6>Organic Orange</h6>
+                                            </a>
+                                            <div class="rating">
+                                                <span><a href="#"><i class="far fa-star"></i></a></span>
+                                                <span><a href="#"><i class="far fa-star"></i></a></span>
+                                                <span><a href="#"><i class="far fa-star"></i></a></span>
+                                                <span><a href="#"><i class="far fa-star"></i></a></span>
+                                                <span><a href="#"><i class="far fa-star"></i></a></span>
+                                            </div>
+                                            <h6>$59.9</h6>
+                                        </div> {% endcomment %}
+                                    </li>
+                                </ul>
+                            {% endfor %}
+   
+                        </div>
+                    </aside>
+                </div>
+                
+                <div class="col-lg-9 col-12">
+                    {% comment %} <h4 class="ph-title bg-secondary py-2 float-center text-white" align="center">Canteen Foods</h4> {% endcomment %}
+                    <article>
+                        <div class="shop-title d-flex flex-wrap justify-content-between rounded bg-secondary">
+                            <p>Showing {{ page_obj.start_index }} - {{ page_obj.end_index }} of {{product.count}} Results</p>
+                            <div class="product-view-mode">
+                                <a class="active" data-target="grids"><i class="icofont-ghost"></i></a>
+                                <a data-target="lists"><i class="icofont-listing-box"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="shop-product-wrap grids row justify-content-center">
+                            {% for i in page_obj %}
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="product-item rounded">
+                                    <div class="product-thumb rounded">
+                                        <img src="{{i.image.url}}" alt="shope" style="width:100%;height:180px">
+                                        <div class="product-action-link">
+                                            <a href="{{i.image.url}}" data-rel="lightcase"><i
+                                                    class="icofont-eye"></i></a>
+                                            <a href="/product-detail/{{i.id}}/"><i class="icofont-info"></i></a>
+                                            <a href="/add_cart/{{i.id}}/"><i class="icofont-cart-alt"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="product-content">
+                                        <h6><a href="#">{{i.name}}</a></h6>
+                                        <div class="rating mb-1">
+                                            <span><a href="#"><i class="far fa-star"></i></a></span>
+                                            <span><a href="#"><i class="far fa-star"></i></a></span>
+                                            <span><a href="#"><i class="far fa-star"></i></a></span>
+                                            <span><a href="#"><i class="far fa-star"></i></a></span>
+                                            <span><a href="#"><i class="far fa-star"></i></a></span>
+                                        </div>
+                                        <h6>{{i.price}}</h6>
+                                    </div>
+                                </div>
+                                <div class="product-list-item">
+                                    <div class="product-thumb">
+                                        <img src="{{i.image.url}}" alt="shope" style="width:100%;height:200px">
+                                        <div class="product-action-link">
+                                            <a href="{{i.image.url}}" data-rel="lightcase"><i
+                                                    class="icofont-eye"></i></a>
+                                            <a href="#"><i class="icofont-heart-alt"></i></a>
+                                            <a href="#"><i class="icofont-cart-alt"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="product-content">
+                                        <h6><a href="#">{{i.name}}</a></h6>
+                                        <div class="rating mb-1">
+                                            <span><a href="#"><i class="far fa-star"></i></a></span>
+                                            <span><a href="#"><i class="far fa-star"></i></a></span>
+                                            <span><a href="#"><i class="far fa-star"></i></a></span>
+                                            <span><a href="#"><i class="far fa-star"></i></a></span>
+                                            <span><a href="#"><i class="far fa-star"></i></a></span>
+                                        </div>
+                                        <h6>
+                                            {{i.price}}
+                                        </h6>
+                                        <p>{{i.desc}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        {% comment %} <div class="pagination bg-primary">
+                            <span class="step-links">
+                                {% if page_obj.has_previous %}
+                                    <a href="?page=1">&laquo; first</a>
+                                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                                {% endif %}
+                        
+                                <span class="current">
+                                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                                </span>
+                        
+                                {% if page_obj.has_next %}
+                                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                                {% endif %}
+                            </span>
+                        </div> {% endcomment %}
+
+                        <div class="paginations mt-0 bg-dark">
+                            <ul class="lab-ul d-flex flex-wrap justify-content-center">
+                
+                                {% if page_obj.has_previous %}
+                                <li class="d-none d-sm-block">
+                                    <a href="?page=1">1</a>
+                                </li>
+                                <li class="d-none d-sm-block">
+                                    <a href="?page={{ page_obj.previous_page_number }}"><i class="icofont-rounded-double-left"></i></a>
+                                </li>
+                                {% endif %}
+                                <li class="d-none d-sm-block">
+                                    <a href="">{{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a>
+                                </li>
+                                {% if page_obj.has_next %}
+                                <li class="d-none d-sm-block">
+                                    <a href="?page={{ page_obj.next_page_number }}"><i class="icofont-rounded-double-right"></i></a>
+                                </li>
+                                <li class="d-none d-sm-block">
+                                    <a href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+
+                {% comment %} <div class="col-lg-3 col-md-7 col-12">
+                </div> {% endcomment %}
+
+                <div class="col-lg-12">
+                    <h4 class="ph-title bg-secondary rounded py-2 float-center text-white" align="center">Recommended Foods</h4>
+                    <article>
+                        <div class="shop-product-wrap grids row mt-2 p-3 justify-content-center">
+                            {% for i in request|recommendationProduct %}
+                                <div class="col-lg-2 col-md-4 col-6">
+                                    <div class="product-item rounded">
+                                        <div class="product-thumb rounded">
+                                            <img src="{{i|productimage}}" alt="shope" style="width:100%;height:150px">
+                                            <div class="product-action-link">
+                                                <a href="{{i|productimage}}" data-rel="lightcase"><i
+                                                        class="icofont-eye"></i></a>
+                                                <a href="/product-detail/{{i}}/"><i class="icofont-info"></i></a>
+                                                <a href="/add_cart/{{i}}/"><i class="icofont-cart-alt"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="product-content">
+                                            <h6><a href="#">{{i|productname}}</a></h6>
+                                            <div class="rating mb-1">
+                                                <span><a href="#"><i class="far fa-star"></i></a></span>
+                                                <span><a href="#"><i class="far fa-star"></i></a></span>
+                                                <span><a href="#"><i class="far fa-star"></i></a></span>
+                                                <span><a href="#"><i class="far fa-star"></i></a></span>
+                                                <span><a href="#"><i class="far fa-star"></i></a></span>
+                                            </div>
+                                            <h6>{{i|productprice}}</h6>
+                                        </div>
+                                    </div>
+                                    <div class="product-list-item">
+                                        <div class="product-thumb">
+                                            <img src="{{i|productimage}}" alt="shope" style="width:100%;height:200px">
+                                            <div class="product-action-link">
+                                                <a href="{{i|productimage}}" data-rel="lightcase"><i
+                                                        class="icofont-eye"></i></a>
+                                                <a href="/product-detail/{{i}}/"><i class="icofont-info"></i></a>
+                                                <a href="/add_cart/{{i}}/"><i class="icofont-cart-alt"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="product-content">
+                                            <h6><a href="#">{{i|productname}}</a></h6>
+                                            <div class="rating mb-1">
+                                                <span><a href="#"><i class="far fa-star"></i></a></span>
+                                                <span><a href="#"><i class="far fa-star"></i></a></span>
+                                                <span><a href="#"><i class="far fa-star"></i></a></span>
+                                                <span><a href="#"><i class="far fa-star"></i></a></span>
+                                                <span><a href="#"><i class="far fa-star"></i></a></span>
+                                            </div>
+                                            <h6>
+                                                {{i|productprice}}
+                                            </h6>
+                                            <p>{{i|productdesc}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'footer.html' %}
+{% endblock %}
